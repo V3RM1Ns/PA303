@@ -1,0 +1,106 @@
+1. ATM Pul Çıxarma Sistemi
+Proqramda başlanğıc balansı 1000 AZN olaraq təyin edin. İstifadəçidən çıxarmaq istədiyi məbləği alın. Əgər məbləğ balansdan çoxdursa Balans kifayet etmir, əks halda məbləği balansdan çıxaraq yeni balansı göstərin. Əgər istifadəçi 0 və ya mənfi məbləğ daxil edərsə Yanlis mebleg mesajı verilsin.
+
+2. Login və Şifrə Sistemi
+Proqramda username admin, password isə 12345 olaraq təyin edilsin. İstifadəçidən username və password alın. Hər ikisi düzgün olduqda Giris ugurlu oldu yazılsın. Yanlış olduqda istifadəçiyə yenidən cəhd etmək imkanı verilsin. Maksimum 3 cəhd verilsin. 3 cəhd də səhv olarsa hesab bloklansın.
+
+3. Ədəd Tapma Oyunu
+Proqram daxilində 1–100 arasında gizli bir ədəd təyin edin. İstifadəçidən təxmin alın. Əgər daxil etdiyi ədəd gizli ədəddən böyükdürsə Daha kicik eded daxil edin, kiçikdirsə Daha boyuk eded daxil edin yazılsın. Düzgün tapdıqda Tebrikler mesajı verilsin və neçə cəhddə tapdığı göstərilsin.
+
+4. Tələbə Qiymətləndirmə Sistemi
+Tələbənin imtahan balını alın.
+
+0–50 → F
+51–60 → D
+61–70 → C
+71–80 → B
+81–100 → A
+
+Əgər bal 0–100 aralığında deyilsə Yanlis bal yazılsın.
+
+5. Market Kassası
+İstifadəçidən məhsulun qiymətini və sayını alın. Ümumi qiyməti hesablayın. Əgər ümumi məbləğ 100 AZN-dən çoxdursa 10%, 200 AZN-dən çoxdursa 20% endirim tətbiq edin. Sonda ilkin qiyməti, endirim məbləğini və ödəniləcək son qiyməti göstərin.
+
+6. Sadə Bank Menyusu
+Başlanğıc balansı 500 AZN olsun. İstifadəçiyə menyu göstərin:
+
+1 - Balansi goster
+2 - Pul yatir
+3 - Pul cixar
+4 - Cixis
+
+İstifadəçi 4 seçənə qədər proqram işləsin. Pul çıxararkən balansın kifayət edib-etmədiyini yoxlayın.
+
+7. Rəqəmlərin Analizi
+İstifadəçidən tam ədəd alın. Ədədin neçə rəqəmli olduğunu, rəqəmlərinin cəmini və rəqəmləri arasında ən böyüyünü tapın.
+
+Məsələn:
+
+Input: 5832
+
+Output:
+Reqem sayi: 4
+Reqemlerin cemi: 18
+En boyuk reqem: 8
+
+8. Ədədin Mükəmməl Olub-Olmadığını Yoxla
+İstifadəçidən tam ədəd alın. Ədədin özündən başqa bütün müsbət bölənlərini tapın və cəmlərini hesablayın. Əgər bölənlərin cəmi həmin ədədə bərabərdirsə Mukemmel ededdir, əks halda Mukemmel eded deyil yazın.
+
+Məsələn: 6 → 1 + 2 + 3 = 6
+
+9. Vurma Cədvəli Oyunu
+İstifadəçidən bir ədəd alın və həmin ədədin 1–10 arası vurma cədvəlini göstərin. Daha sonra istifadəçiyə həmin cədvəldən 5 sual verin. Hər düzgün cavaba +1 bal verin və sonda ümumi nəticəni göstərin.
+
+10. Sadə Kino Bilet Sistemi
+İstifadəçidən yaşını və bilet sayını alın.
+
+Yaşa görə bir biletin qiyməti:
+
+0–12 → 5 AZN
+13–17 → 7 AZN
+18–59 → 10 AZN
+60+ → 6 AZN
+
+Ümumi bilet qiymətini hesablayın. Əgər 4 və ya daha çox bilet alınırsa, ümumi məbləğə 15% endirim tətbiq edin.
+
+11. ATM PIN və Balans Sistemi
+Düzgün PIN 4321 olsun. İstifadəçiyə maksimum 3 PIN cəhdi verin. PIN düzgün daxil edildikdən sonra ATM menyusu açılsın:
+
+1 - Balans
+2 - Pul cixar
+3 - Pul yatir
+4 - Cixis
+
+İstifadəçi 4 seçənə qədər menyu davam etsin.
+
+12. Ədəd Statistikası
+İstifadəçidən ardıcıl olaraq ədədlər alın. İstifadəçi 0 daxil etdikdə input prosesi dayansın. Daxil edilmiş ədədlər arasında:
+
+neçə müsbət ədəd olduğunu;
+neçə mənfi ədəd olduğunu;
+cəmini;
+ən böyük ədədi;
+ən kiçik ədədi
+
+tapın.
+
+13. Parol Gücü Yoxlama
+İstifadəçidən parol alın. Parolun uzunluğu 8 simvoldan azdırsa Parol cox qisadir yazın. Əks halda parolun içərisində ən azı bir rəqəm olub-olmadığını yoxlayın. Rəqəm varsa Guclu parol, yoxdursa Parolda reqem olmalidir yazın.
+
+14. Mini Yarış Oyunu
+İki oyunçudan ardıcıl olaraq 5 ədəd alın. Hər turda daha böyük ədəd daxil edən oyunçu 1 xal qazansın. 5 tur bitdikdən sonra hər iki oyunçunun xalını göstərin və qalibi müəyyən edin.
+
+Məsələn:
+
+Player 1: 25
+Player 2: 18
+Player 1 +1 xal
+
+15. Mini Bank Sistemi
+Proqramda başlanğıc balansı 1000 AZN olan hesab yaradın. Proqram aşağıdakı menyunu göstərməlidir:
+
+1 - Balansi goster
+2 - Pul yatir
+3 - Pul cixar
+4 - Son emeliyyatlari goster
+5 - Cixis
