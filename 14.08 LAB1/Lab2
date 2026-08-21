@@ -1,0 +1,140 @@
+🟢 ASAN — 3 TASK
+1. İki ədədin hasilini qaytaran method
+
+multiply(5, 4) → 20
+
+2. Ədədin son rəqəmini tapan method
+
+getLastDigit(58321) → 1
+
+3. String-in uzunluğunu qaytaran method
+
+getLength("Hikmet") → 6
+
+🟡 ORTA — 7 TASK
+4. Ədədin rəqəmləri cəmini tapan method
+
+sumDigits(58321) → 19
+
+5. Ədədin rəqəmləri arasında ən böyük rəqəmi tapan method
+
+maxDigit(58321) → 8
+
+6. Ədədin rəqəmlərini tərsinə çevirən method
+
+reverseNumber(12345) → 54321
+
+7. String-də neçə söz olduğunu tapan method
+
+countWords("Java is very powerful") → 4
+
+8. Array-də yalnız müsbət ədədlərdən yeni array yaradan method
+
+{-2, 5, -7, 8, 3} → {5, 8, 3}
+
+9. İki array-i birləşdirən method
+
+{1,2,3} + {4,5,6} → {1,2,3,4,5,6}
+
+10. Array-də maksimum və minimum element arasındakı fərqi tapan method
+
+{5, 12, 3, 20, 8} → 17
+
+🔴 ÇƏTİN — 10 TASK
+11. Ədədin palindrom olub-olmadığını yoxla
+
+Method true/false qaytarmalıdır.
+
+isPalindrome(1221) → true
+isPalindrome(1234) → false
+
+12. Array-də ikinci ən böyük elementi tap
+
+{10, 25, 7, 18, 30, 14} → 25
+
+Qeyd: Ən böyük elementi ikinci dəfə sayma.
+
+13. Array-də təkrarlanan elementləri tap
+
+{1, 2, 3, 2, 4, 5, 1, 6}
+
+Nəticə:
+
+{1, 2}
+
+14. Array-də yalnız bir dəfə olan elementləri tap
+
+{1, 2, 2, 3, 4, 4, 5}
+
+Nəticə:
+
+{1, 3, 5}
+
+15. İki array-in ortaq elementlərini tap
+
+{1, 2, 3, 4, 5}
+{3, 4, 5, 6, 7}
+
+Nəticə:
+
+{3, 4, 5}
+
+16. String-də ən çox təkrarlanan simvolu tap
+
+"programming"
+
+Method ən çox təkrarlanan simvolu qaytarmalıdır.
+
+Məsələn:
+
+findMostRepeated("hello") → 'l'
+
+17. Array-i tərsinə çevir
+
+Method array qəbul edir və elementlərin sırasını dəyişir.
+
+{1,2,3,4,5} → {5,4,3,2,1}
+
+Şərt: Hazır reverse funksiyasından istifadə etmə.
+
+18. Array-də ardıcıl eyni elementlərin maksimum sayını tap
+
+Məsələn:
+
+{1,1,2,2,2,3,3,1}
+
+Nəticə:
+
+3
+
+Çünki 2 ardıcıl 3 dəfə təkrarlanır.
+
+19. Array-də ən uzun artan ardıcıllığın uzunluğunu tap
+
+Məsələn:
+
+{1,2,3,2,4,5,6,7,1}
+
+Nəticə:
+
+4
+
+Çünki:
+
+4 → 5 → 6 → 7
+
+ən uzun ardıcıl artan hissədir.
+
+20. Array-də ən çox təkrarlanan elementi tap
+
+Məsələn:
+
+{5, 2, 5, 3, 2, 5, 4, 2}
+
+Nəticə:
+
+5
+
+Çünki 5 → 3 dəfə, 2 → 3 dəfə təkrarlanır.
+
+Əlavə şərt: Əgər bərabərlik varsa, ilk qarşılaşdığın elementi qaytar.
