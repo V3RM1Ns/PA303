@@ -40,6 +40,71 @@ countWords("Java is very powerful") → 4
 
 {5, 12, 3, 20, 8} → 17
 
+
+
+
+
+
+16. Array-də tək ədədlərdən yeni array yaradan method
+getOddNumbers({2, 7, 4, 9, 11, 6}) → {7, 9, 11}
+17. Ədədin neçə rəqəmdən ibarət olduğunu tapan method
+countDigits(58321) → 5
+countDigits(42) → 2
+18. Array-də ilk və son elementin yerini dəyişən method
+swapFirstLast({10, 20, 30, 40, 50}) → {50, 20, 30, 40, 10}
+Şərt: Hazır Reverse() və ya başqa hazır method istifadə etmə.
+19. String-də müəyyən simvolun neçə dəfə təkrarlandığını tapan method
+countCharacter("programming", 'g') → 2
+countCharacter("banana", 'a') → 3
+
+20. Array-də 0-dan böyük və 0-dan kiçik elementlərin sayını tap
+countPositiveNegative({-5, 3, -2, 8, 0, -7, 4})
+→ {3, 3}
+21. Array-də yalnız cüt indekslərdə yerləşən elementlərdən yeni array yarat
+getEvenIndexElements({10, 20, 30, 40, 50, 60})
+→ {10, 30, 50}
+0, 2, 4 indekslərindəki elementlər götürülür.
+22. Array-də ən böyük elementin indeksini tapan method
+findMaxIndex({5, 12, 3, 20, 8})
+→ 3
+Çünki 20 array-də 3-cü indexdədir.
+23. Array-də ən kiçik elementin indeksini tapan method
+findMinIndex({8, 4, 12, 2, 7})
+→ 3
+Çünki 2 3-cü indexdədir.
+24. Ədədin ilk rəqəmini tapan method
+getFirstDigit(58321)
+→ 5
+
+getFirstDigit(927)
+→ 9
+Şərt: Ədədi string-ə çevirmə.
+25. Array-də verilmiş ədəddən böyük elementlərin sayını tap
+countGreaterThan({5, 12, 3, 20, 8, 15}, 10)
+→ 3
+Çünki:
+12, 20, 15
+26. String-də rəqəmlərin sayını tapan method
+countDigitsInString("abc123hello45")
+→ 5
+Burada:
+1, 2, 3, 4, 5
+olmaqla 5 rəqəm var.
+27. Array-də elementlərin cəmini tapan method
+sumArray({5, 10, 15, 20})
+→ 50
+Şərt: Sum() istifadə etmə.
+28. Array-də verilmiş elementin ilk göründüyü indeksi tapan method
+findIndex({5, 8, 3, 8, 10}, 8)
+→ 1
+Əgər element yoxdursa:
+findIndex({5, 8, 3, 10}, 7)
+→ -1
+Şərt: Array.IndexOf() istifadə etmə.
+
+
+
+
 🔴 ÇƏTİN — 10 TASK
 11. Ədədin palindrom olub-olmadığını yoxla
 
