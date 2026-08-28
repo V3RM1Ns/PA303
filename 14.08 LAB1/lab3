@@ -1,0 +1,212 @@
+# C# Praktiki Tapşırıq
+
+## 1. String Methods
+
+### Tapşırıq 1 — E-mail yoxlanışı
+
+`FixEmail` adlı metod yaradın.
+
+Metod verilən e-mail adresinin düzgünlüyünü yoxlamalıdır.
+
+Aşağıdakı şərtlər ödənilməlidir:
+
+* E-mail boş ola bilməz.
+* E-mail daxilində `@` simvolu olmalıdır.
+* `@` simvolundan sonra `.` simvolu olmalıdır.
+* Bütün şərtlər ödənilərsə `true`, əks halda `false` qaytarılmalıdır.
+* `@` simvolundan sağ tərəfdə qalan hissə `domain` olaraq geri qaytarılmalıdır.
+* `email` dəyişənində isə yalnız `@` simvolunun sol tərəfindəki hissə qalmalıdır.
+
+**Nümunə:**
+
+```csharp
+string email = "test.user@code.edu.az";
+
+string domain = FixEmail(...);
+
+Console.WriteLine(email);
+Console.WriteLine(domain);
+```
+
+**Nəticə:**
+
+```text
+test.user
+code.edu.az
+```
+
+> E-mail boş olduğu halda istifadəçiyə məlumat verilməlidir.
+
+---
+
+### Tapşırıq 2 — Zədələnmiş adların düzəldilməsi
+
+Aşağıdakı zədələnmiş adlar verilmişdir:
+
+```csharp
+string wreckedNames = "?yX?N;F?tEH;yuSif;k?MR?n";
+```
+
+`RepairNames` adlı metod yaradın.
+
+Metod aşağıdakı düzəlişləri etməlidir:
+
+1. `?` simvollarını `a` hərfi ilə əvəz etməlidir.
+2. Hər bir adın ilk hərfi böyük olmalıdır.
+3. Adın digər hərfləri kiçik olmalıdır.
+4. Adlar `;` simvolu ilə ayrılmışdır.
+5. Nəticədə adlar `,` simvolu ilə ayrılmış `string` şəklində qaytarılmalıdır.
+
+**Nümunə:**
+
+```csharp
+Console.WriteLine(RepairNames(wreckedNames));
+```
+
+**Nəticə:**
+
+```text
+Ayxan, Fateh, Yusif, Kamran
+```
+
+---
+
+# 2. Class və OOP
+
+## Tapşırıq 3 — Order Class
+
+`Order` adlı class yaradın.
+
+### Field-lar
+
+Class daxilində aşağıdakı field-lar olmalıdır:
+
+* `Id`
+* `ProductName`
+* `Count`
+* `Price`
+
+### Constructor
+
+`Order` class-ında **2 constructor** yaradın.
+
+* Məhsulun sayı göndərilərsə, `Count` həmin dəyərə bərabər olmalıdır.
+* Məhsulun sayı göndərilməzsə, `Count` avtomatik olaraq `1` olmalıdır.
+* Digər məlumatlar constructor vasitəsilə təyin edilməlidir.
+
+---
+
+### Metod 1 — Ümumi məbləğ
+
+Sifarişin ümumi məbləğini geri qaytaran metod yaradın.
+
+**Formula:**
+
+```text
+Ümumi məbləğ = Count × Price
+```
+
+---
+
+### Metod 2 — Məhsul sayını artırmaq
+
+Məhsulun sayını artıran metod yaradın.
+
+* Metoda `n` dəyəri göndərilərsə, `Count` `n` qədər artırılmalıdır.
+* `n` göndərilməzsə, `Count` `1` vahid artırılmalıdır.
+
+---
+
+### Metod 3 — Sifariş məlumatlarını göstərmək
+
+`StringBuilder` istifadə edərək sifariş məlumatlarını ekrana çıxaran metod yaradın.
+
+**Çıxış nümunəsi:**
+
+```text
+Sifariş ID: 1
+Məhsul: Kitab
+Sayı: 2
+Qiymət: 15 AZN
+Ümumi Məbləğ: 30 AZN
+```
+
+---
+
+### Metod 4 — ChangePrice
+
+`ChangePrice` adlı metod yaradın.
+
+Metoda məhsulun yeni qiyməti göndərilməlidir.
+
+Metod:
+
+* Köhnə qiyməti yadda saxlamalıdır.
+* Məhsulun qiymətini yeni qiymətlə dəyişməlidir.
+* Köhnə və yeni qiymət arasındakı fərqi `diff` dəyişəni vasitəsilə qaytarmalıdır.
+
+**İstifadə nümunəsi:**
+
+```csharp
+int diff;
+
+order1.ChangePrice(...);
+
+Console.WriteLine(diff);
+Console.WriteLine(order1.Price);
+```
+
+`diff` dəyişənində **köhnə və yeni qiymət arasındakı fərq** saxlanılmalıdır.
+
+---
+
+# 3. Inheritance
+
+## Tapşırıq 4 — OnlineOrder Class
+
+`Order` class-ından miras alan `OnlineOrder` adlı class yaradın.
+
+### Əlavə field
+
+`OnlineOrder` class-ında aşağıdakı əlavə field olmalıdır:
+
+* `Distance`
+
+`Id`, `ProductName`, `Count` və `Price` məlumatları `Order` class-ından gəlməlidir.
+
+### Constructor
+
+Bütün lazımi məlumatlar constructor vasitəsilə təyin edilməlidir.
+
+---
+
+### Metod 1 — Çatdırılma ödənişi
+
+Çatdırılma məbləğini hesablayan metod yaradın.
+
+Şərtlər:
+
+* Hər `5 km` məsafəyə görə `2 AZN` çatdırılma ödənişi alınmalıdır.
+* Metod ümumi çatdırılma ödənişini geri qaytarmalıdır.
+
+---
+
+### Metod 2 — Online sifariş məlumatları
+
+`StringBuilder` istifadə edərək sifariş haqqında bütün məlumatları, çatdırılma məbləğini və çatdırılma ilə birlikdə ümumi məbləği göstərən metod yaradın.
+
+**Çıxış nümunəsi:**
+
+```text
+Sifariş ID: 1
+Məhsul: Kitab
+Sayı: 2
+Qiymət: 15 AZN
+Ümumi Məbləğ: 30 AZN
+Məsafə: 12 Km
+Çatdırılma: 3 AZN
+Ümumi Məbləğ Çatdırılma ilə: 33 AZN
+```
+
+---
+oruşun**. Şərti tam başa düşdükdən sonra həllə başlayın.
