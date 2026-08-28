@@ -119,8 +119,6 @@ Məhsulun sayını artıran metod yaradın.
 METOD 3 — SİFARİŞ MƏLUMATLARINI GÖSTƏRMƏK
 -------------------------------------------
 
-StringBuilder istifadə edərək sifariş məlumatlarını ekrana
-çıxaran metod yaradın.
 
 Çıxış nümunəsi:
 
