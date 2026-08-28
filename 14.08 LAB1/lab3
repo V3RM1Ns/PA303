@@ -210,3 +210,359 @@ Qiymət: 15 AZN
 Məsafə: 12 Km
 Çatdırılma: 3 AZN
 Ümumi Məbləğ Çatdırılma ilə: 33 AZN
+
+
+============================================================
+5. ORDER CLASS — DAVAMI
+============================================================
+
+TAPŞIRIQ 5 — MƏHSUL SAYINI AZALTMAQ
+------------------------------------------------------------
+
+Order class-ına ReduceCount adlı metod əlavə edin.
+
+Metod məhsulun sayını azaltmalıdır.
+
+Şərtlər:
+
+- Metoda n göndərilərsə, Count n qədər azaldılmalıdır.
+- n göndərilməzsə, Count 1 vahid azaldılmalıdır.
+- Count 0-dan aşağı düşməməlidir.
+
+Nümunə:
+
+Order order1 = new Order(1, "Kitab", 5, 15);
+
+order1.ReduceCount(2);
+
+Nəticə:
+
+Count = 3
+
+
+------------------------------------------------------------
+TAPŞIRIQ 6 — QİYMƏTİ ARTIRMAQ
+------------------------------------------------------------
+
+Order class-ına IncreasePrice adlı metod əlavə edin.
+
+Metoda faiz göndərilməlidir.
+
+Məhsulun qiyməti göndərilən faiz qədər artırılmalıdır.
+
+Formula:
+
+Yeni qiymət = Köhnə qiymət + (Köhnə qiymət × faiz / 100)
+
+
+Nümunə:
+
+Price = 100
+
+IncreasePrice(20);
+
+Nəticə:
+
+Price = 120
+
+
+------------------------------------------------------------
+TAPŞIRIQ 7 — QİYMƏTİ AZALTMAQ
+------------------------------------------------------------
+
+Order class-ına DecreasePrice adlı metod əlavə edin.
+
+Metoda faiz göndərilməlidir.
+
+Məhsulun qiyməti göndərilən faiz qədər azaldılmalıdır.
+
+Formula:
+
+Yeni qiymət = Köhnə qiymət - (Köhnə qiymət × faiz / 100)
+
+
+Nümunə:
+
+Price = 100
+
+DecreasePrice(20);
+
+Nəticə:
+
+Price = 80
+
+
+============================================================
+6. ONLINEORDER CLASS — DAVAMI
+============================================================
+
+TAPŞIRIQ 8 — MƏSAFƏNİ DƏYİŞDİRMƏK
+------------------------------------------------------------
+
+OnlineOrder class-ına ChangeDistance adlı metod əlavə edin.
+
+Metoda yeni məsafə göndərilməlidir.
+
+Distance yeni dəyərə dəyişdirilməlidir.
+
+
+Nümunə:
+
+Distance = 10;
+
+ChangeDistance(25);
+
+Nəticə:
+
+Distance = 25
+
+
+Daha sonra GetDeliveryPrice metodunu çağıraraq
+yeni çatdırılma qiymətini hesablayın.
+
+
+============================================================
+7. ONLINEORDER — ÇATDIRILMA
+============================================================
+
+TAPŞIRIQ 9 — ÇATDIRILMA QİYMƏTİNİ HESABLAMAQ
+------------------------------------------------------------
+
+OnlineOrder class-ında GetDeliveryPrice adlı metod yaradın.
+
+Şərt:
+
+- Hər 5 km üçün 2 AZN çatdırılma ödənişi alınmalıdır.
+
+Nümunələr:
+
+Distance = 5
+Delivery = 2 AZN
+
+Distance = 10
+Delivery = 4 AZN
+
+Distance = 15
+Delivery = 6 AZN
+
+Distance = 20
+Delivery = 8 AZN
+
+
+Metod çatdırılma qiymətini geri qaytarmalıdır.
+
+
+============================================================
+8. ONLINEORDER — YEKUN MƏBLƏĞ
+============================================================
+
+TAPŞIRIQ 10 — FINAL PRICE
+------------------------------------------------------------
+
+OnlineOrder class-ında GetFinalPrice adlı metod yaradın.
+
+Metod:
+
+- Məhsulların ümumi məbləğini
+- Çatdırılma qiymətini
+
+hesablamalı və ikisini toplamalıdır.
+
+
+Formula:
+
+FinalPrice = TotalPrice + DeliveryPrice
+
+
+Nümunə:
+
+Count = 2
+Price = 15
+Distance = 10
+
+TotalPrice = 30 AZN
+Delivery = 4 AZN
+
+FinalPrice = 34 AZN
+
+
+============================================================
+9. STRING METHODS — ORDER
+============================================================
+
+TAPŞIRIQ 11 — MƏHSUL ADININ DÜZƏLDİLMƏSİ
+------------------------------------------------------------
+
+Order class-ına FixProductName adlı metod əlavə edin.
+
+ProductName üzərində aşağıdakı əməliyyatları aparın:
+
+1. Başdakı və sondakı boşluqları silin.
+2. Bütün hərfləri kiçik edin.
+3. İlk hərfi böyük edin.
+
+
+Nümunə:
+
+ProductName = "   kİTAB   "
+
+
+FixProductName();
+
+
+Nəticə:
+
+ProductName = "Kitab"
+
+
+Qeyd:
+
+String metodlarından istifadə edin.
+
+
+============================================================
+10. STRING METHODS — ONLINEORDER
+============================================================
+
+TAPŞIRIQ 12 — E-MAIL MƏLUMATLARI
+------------------------------------------------------------
+
+OnlineOrder class-ına aşağıdakı field-i əlavə edin:
+
+- CustomerEmail
+
+
+Nümunə:
+
+CustomerEmail = "test.user@code.edu.az"
+
+
+METOD 1 — GETEMAILUSER
+----------------------
+
+GetEmailUser adlı metod yaradın.
+
+Metod e-mail-in @ simvolundan əvvəlki hissəsini
+geri qaytarmalıdır.
+
+
+Nəticə:
+
+test.user
+
+
+METOD 2 — GETEMAILDOMAIN
+------------------------
+
+GetEmailDomain adlı metod yaradın.
+
+Metod e-mail-in @ simvolundan sonrakı hissəsini
+geri qaytarmalıdır.
+
+
+Nəticə:
+
+code.edu.az
+
+
+============================================================
+11. ONLINEORDER — MƏLUMATLARI GÖSTƏRMƏK
+============================================================
+
+TAPŞIRIQ 13 — DETAIL
+------------------------------------------------------------
+
+OnlineOrder class-ında Detail metodunu override edin.
+
+Detail metodu aşağıdakı məlumatları ekrana çıxarmalıdır:
+
+Sifariş ID: 1
+Məhsul: Kitab
+Sayı: 2
+Qiymət: 15 AZN
+Ümumi Məbləğ: 30 AZN
+Məsafə: 10 Km
+Çatdırılma: 4 AZN
+Yekun Məbləğ: 34 AZN
+
+
+Qeyd:
+
+Bu metodda StringBuilder istifadə ETMƏYİN.
+
+Adi Console.WriteLine istifadə edin.
+
+
+============================================================
+12. FINAL TAPŞIRIQ
+============================================================
+
+TAPŞIRIQ 14 — ORDER + ONLINEORDER
+------------------------------------------------------------
+
+İndiyə qədər yaratdığınız Order və OnlineOrder class-larını
+birlikdə istifadə edin.
+
+
+ORDER ÜÇÜN:
+
+- Id
+- ProductName
+- Count
+- Price
+
+
+ONLINEORDER ÜÇÜN:
+
+- Id
+- ProductName
+- Count
+- Price
+- Distance
+- CustomerEmail
+
+
+Aşağıdakı əməliyyatları yerinə yetirin:
+
+1. Adi Order obyekti yaradın.
+2. Məhsulun ümumi məbləğini hesablayın.
+3. Məhsul sayını artırın.
+4. Məhsul sayını azaldın.
+5. Məhsulun qiymətini artırın.
+6. Məhsulun qiymətini azaldın.
+7. Order məlumatlarını göstərin.
+
+8. OnlineOrder obyekti yaradın.
+9. Çatdırılma qiymətini hesablayın.
+10. Məsafəni dəyişdirin.
+11. Yeni çatdırılma qiymətini hesablayın.
+12. E-mail-in user hissəsini tapın.
+13. E-mail-in domain hissəsini tapın.
+14. Yekun məbləği hesablayın.
+15. Bütün OnlineOrder məlumatlarını göstərin.
+
+
+NÜMUNƏ:
+
+Order:
+
+Id: 1
+ProductName: Kitab
+Count: 2
+Price: 15 AZN
+
+
+OnlineOrder:
+
+Id: 2
+ProductName: Telefon
+Count: 1
+Price: 800 AZN
+Distance: 15 Km
+CustomerEmail: test@gmail.com
+
+Total Price: 800 AZN
+Delivery Price: 6 AZN
+Final Price: 806 AZN
+Email User: test
+Email Domain: gmail.com
