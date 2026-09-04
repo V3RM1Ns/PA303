@@ -303,3 +303,237 @@ Program.cs daxilində aşağıdakı əməliyyatların hamısını test edin:
 * Polymorphism
 
 Proqramın sonunda obyektlərin məlumatlarını Console-a çıxarın.
+
+
+============================================================
+TASK 1 — VEHICLE ABSTRACT CLASS
+Vehicle adlı abstract class yaradın.
+Property-lər:
+Id
+Brand
+Model
+Year
+Price
+IsRented
+Qaydalar:
+Id 0-dan böyük olmalıdır.
+Brand boş ola bilməz.
+Model boş ola bilməz.
+Year 2000-dən kiçik ola bilməz.
+Price 0-dan böyük olmalıdır.
+IsRented default olaraq false olmalıdır.
+Abstract metod yaradın:
+CalculateRentalPrice(int days)
+Metod double tipində nəticə qaytarmalıdır.
+============================================================
+TASK 2 — CAR CLASS
+Car adlı class yaradın.
+Vehicle class-dan miras alsın.
+Əlavə property-lər:
+HorsePower
+Color
+FuelType
+Constructor aşağıdakı məlumatları qəbul etməlidir:
+Id
+Brand
+Model
+Year
+Price
+HorsePower
+Color
+FuelType
+Qaydalar:
+HorsePower 0-dan böyük olmalıdır.
+Color boş ola bilməz.
+CalculateRentalPrice() metodunu override edin.
+Cərimə qaydaları:
+1-3 gün → hər gün üçün 50 AZN
+4-7 gün → hər gün üçün 40 AZN
+7 gündən çox → hər gün üçün 30 AZN
+ToString() metodunu override edin.
+============================================================
+TASK 3 — ELECTRIC CAR
+ElectricCar adlı class yaradın.
+Car class-dan miras alsın.
+Əlavə property:
+BatteryCapacity
+Qayda:
+BatteryCapacity 0-dan böyük olmalıdır.
+CalculateRentalPrice() metodunu override edin.
+Qiymət qaydaları:
+1-3 gün → hər gün üçün 60 AZN
+4-7 gün → hər gün üçün 50 AZN
+7 gündən çox → hər gün üçün 40 AZN
+ToString() metodunu override edin.
+============================================================
+TASK 4 — ENUM
+FuelType adlı enum yaradın.
+Enum aşağıdakı dəyərlərdən ibarət olsun:
+Petrol
+Diesel
+Hybrid
+Electric
+Car class daxilində FuelType property-si bu enum-dan istifadə etməlidir.
+============================================================
+TASK 5 — INTERFACE
+ICarService adlı interface yaradın.
+Interface daxilində aşağıdakı metodlar olmalıdır:
+AddCar(Vehicle car)
+FindById(int id)
+RentCar(int id)
+ReturnCar(int id)
+============================================================
+TASK 6 — CAR SERVICE
+CarService adlı class yaradın.
+ICarService interface-ini implement etsin.
+Class daxilində Vehicle tipində static array yaradın.
+Array-in ölçüsü 20 olsun.
+Məsələn:
+static Vehicle[] cars = new Vehicle[20];
+============================================================
+TASK 7 — ADD CAR
+AddCar() metodu yaradın.
+Array-ə yeni avtomobil əlavə edilməlidir.
+Əgər eyni Id artıq mövcuddursa:
+"Car with this ID already exists."
+mesajı Console-a çıxarılsın.
+Əgər array-də boş yer yoxdursa:
+"Car parking is full."
+mesajı Console-a çıxarılsın.
+============================================================
+TASK 8 — FIND BY ID
+FindById(int id) metodu yaradın.
+Verilmiş Id-yə uyğun avtomobil tapılmalıdır.
+Tapılarsa həmin Vehicle obyekti qaytarılmalıdır.
+Tapılmazsa null qaytarılmalıdır.
+============================================================
+TASK 9 — RENT CAR
+RentCar(int id) metodu yaradın.
+Əgər avtomobil tapılmasa:
+"Car not found."
+mesajı çıxmalıdır.
+Əgər avtomobil artıq kirayədədirsə:
+"Car is already rented."
+mesajı çıxmalıdır.
+Əks halda:
+IsRented true edilməlidir.
+============================================================
+TASK 10 — RETURN CAR
+ReturnCar(int id) metodu yaradın.
+Əgər avtomobil tapılmasa:
+"Car not found."
+mesajı çıxmalıdır.
+Əgər avtomobil kirayədə deyilsə:
+"Car is not rented."
+mesajı çıxmalıdır.
+Əks halda:
+IsRented false edilməlidir.
+============================================================
+TASK 11 — EXTENSION METHODS
+CarExtensions adlı static class yaradın.
+GetStatus()
+Vehicle üçün extension method yaradın.
+Əgər IsRented true-dursa:
+"Rented"
+qaytarsın.
+Əks halda:
+"Available"
+qaytarsın.
+GetShortInfo()
+Vehicle üçün extension method yaradın.
+Aşağıdakı formatda məlumat qaytarsın:
+[Id] Brand Model - Year
+Məsələn:
+[1] BMW M5 - 2024
+GetRentalPrice()
+Vehicle üçün extension method yaradın.
+Parametr olaraq days qəbul etsin.
+CalculateRentalPrice(days) metodundan istifadə edərək rental qiymətini qaytarsın.
+============================================================
+TASK 12 — POLYMORPHISM
+Aşağıdakı obyektləri yaradın:
+Ən azı 2 Car
+Ən azı 2 ElectricCar
+Obyektlər Vehicle tipində istifadə olunmalıdır.
+Məsələn:
+Vehicle car1 = new Car(...);
+Vehicle car2 = new ElectricCar(...);
+Daha sonra:
+car1.CalculateRentalPrice(5);
+car2.CalculateRentalPrice(5);
+çağırılmalıdır.
+Polymorphism istifadə edərək uyğun class-ın override etdiyi metodun işləməsini yoxlayın.
+============================================================
+TASK 13 — POLYMORPHIC ARRAY
+Vehicle tipində array yaradın.
+Array daxilində:
+2 Car
+2 ElectricCar
+olmalıdır.
+foreach istifadə edərək bütün avtomobilləri gəzin.
+Hər avtomobil üçün:
+ToString()
+CalculateRentalPrice()
+GetStatus()
+GetShortInfo()
+metodlarını çağırın.
+============================================================
+TASK 14 — SEARCH BY BRAND
+CarService daxilində:
+FindByBrand(string brand)
+metodu yaradın.
+Verilmiş markaya uyğun avtomobilləri tapmalıdır.
+Axtarış case-insensitive olmalıdır.
+Məsələn:
+FindByBrand("BMW");
+BMW markalı bütün avtomobilləri qaytarmalıdır.
+============================================================
+TASK 15 — REMOVE CAR
+CarService daxilində:
+RemoveCar(int id)
+metodu yaradın.
+Id tapılmazsa:
+"Car not found."
+mesajı çıxmalıdır.
+Id tapılarsa həmin avtomobil array-dən silinməlidir.
+Array-də həmin element null edilməlidir.
+Uğurlu olduqda:
+"Car removed successfully."
+mesajı çıxmalıdır.
+============================================================
+TASK 16 — CAR STATISTICS
+CarService daxilində aşağıdakı metodları yaradın:
+GetTotalCarCount()
+GetRentedCarCount()
+GetAvailableCarCount()
+GetElectricCarCount()
+GetNormalCarCount()
+Məsələn:
+Total Cars: 8
+Rented Cars: 3
+Available Cars: 5
+Electric Cars: 2
+Normal Cars: 6
+============================================================
+TASK 17 — SORTING
+CarService daxilində aşağıdakı metodları yaradın:
+SortByPrice()
+Avtomobilləri Price-a görə artan sıra ilə sıralasın.
+SortByYear()
+Avtomobilləri Year-a görə artan sıra ilə sıralasın.
+SortByBrand()
+Avtomobilləri Brand-a görə A-Z sıralasın.
+============================================================
+TASK 18 — INVALID DATA
+Aşağıdakı səhv məlumatlarla obyekt yaratmağa çalışın:
+Id = -1
+Brand = ""
+Model = ""
+Year = 1990
+Price = 0
+HorsePower = 0
+Color = ""
+BatteryCapacity = 0
+Hər bir halda validation işləməlidir.
+Uyğun error mesajı Console-a çıxarılmalıdır.
+============================================================
