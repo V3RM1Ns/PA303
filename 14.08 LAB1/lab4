@@ -1,0 +1,305 @@
+C# PRAKTİKİ TAPŞIRIQ
+
+============================================================
+TASK 1 — KİTABXANA İDARƏETMƏ SİSTEMİ
+====================================
+
+1. LibraryItem adlı abstract class yaradın.
+
+Class daxilində aşağıdakı property-ləri yaradın:
+
+* Id
+* Title
+* Author
+* Year
+* IsBorrowed
+
+Qaydalar:
+
+* Id müsbət olmalıdır.
+* Title boş ola bilməz.
+* Author boş ola bilməz.
+* Year 0-dan kiçik ola bilməz.
+* IsBorrowed default olaraq false olmalıdır.
+
+LibraryItem class daxilində aşağıdakı abstract metod yaradılmalıdır:
+
+CalculateLateFee(int days)
+
+Metod gecikmə günlərinin sayını qəbul etməli və double tipində gecikmə cəriməsini qaytarmalıdır.
+
+2. Book adlı class yaradın.
+
+LibraryItem class-dan miras alsın.
+
+Book class-ına əlavə olaraq aşağıdakı property əlavə edin:
+
+* PageCount
+* Category
+
+Constructor aşağıdakı məlumatları qəbul etməlidir:
+
+* Id
+* Title
+* Author
+* Year
+* PageCount
+* Category
+
+Qayda:
+
+PageCount > 0
+
+CalculateLateFee() metodunu override edin.
+
+Cərimə qaydaları:
+
+* 1-5 gün gecikmə → hər gün üçün 0.50 AZN
+* 6-10 gün gecikmə → hər gün üçün 1 AZN
+* 10 gündən çox → hər gün üçün 2 AZN
+
+Book üçün ToString() metodunu override edin.
+
+3. Magazine adlı class yaradın.
+
+LibraryItem class-dan miras alsın.
+
+Əlavə property:
+
+* IssueNumber
+
+Constructor aşağıdakı məlumatları qəbul etməlidir:
+
+* Id
+* Title
+* Author
+* Year
+* IssueNumber
+
+Qayda:
+
+IssueNumber > 0
+
+CalculateLateFee() metodunu override edin.
+
+Magazine üçün hər gecikmiş günə görə 0.25 AZN cərimə hesablanmalıdır.
+
+ToString() metodunu override edin.
+
+4. EBook adlı class yaradın.
+
+LibraryItem class-dan miras alsın.
+
+Əlavə property:
+
+* FileSizeMb
+
+Constructor aşağıdakı məlumatları qəbul etməlidir:
+
+* Id
+* Title
+* Author
+* Year
+* FileSizeMb
+
+Qayda:
+
+FileSizeMb > 0
+
+CalculateLateFee() metodunu override edin.
+
+EBook üçün gecikmə cəriməsi həmişə 0 AZN olmalıdır.
+
+ToString() metodunu override edin.
+
+============================================================
+TASK 2 — ENUM
+=============
+
+Category adlı enum yaradın.
+
+Enum aşağıdakı dəyərlərdən ibarət olmalıdır:
+
+* Fiction
+* Science
+* History
+* Technology
+
+============================================================
+TASK 3 — INTERFACE
+==================
+
+ILibraryService adlı interface yaradın.
+
+Interface daxilində aşağıdakı metodlar olmalıdır:
+
+* AddItem(LibraryItem item)
+* FindById(int id)
+* BorrowItem(int id)
+* ReturnItem(int id)
+
+============================================================
+TASK 4 — LIBRARY SERVICE
+========================
+
+LibraryService adlı class yaradın.
+
+ILibraryService interface-ini implement etməlidir.
+
+Class daxilində LibraryItem tipində static array saxlanılmalıdır.
+
+Massivin ölçüsü 20 olsun.
+
+1. AddItem()
+
+Massivə yeni LibraryItem əlavə edən metod yaradın.
+
+Əgər eyni Id artıq mövcuddursa:
+
+"Item with this ID already exists."
+
+mesajını Console-a çıxarın.
+
+Əgər massivdə boş yer yoxdursa:
+
+"Library is full."
+
+mesajını Console-a çıxarın.
+
+2. FindById()
+
+Id qəbul edən metod yaradın.
+
+Verilmiş Id-yə uyğun LibraryItem tapılmalıdır.
+
+Tapılarsa həmin obyekt qaytarılmalıdır.
+
+Tapılmazsa null qaytarılmalıdır.
+
+3. BorrowItem()
+
+Id qəbul etməlidir.
+
+Verilmiş Id-yə uyğun LibraryItem tapılmalıdır.
+
+Əgər item tapılmasa:
+
+"Item not found."
+
+mesajı çıxmalıdır.
+
+Əgər item artıq götürülübsə:
+
+"Item is already borrowed."
+
+mesajı çıxmalıdır.
+
+Əks halda IsBorrowed true edilməlidir.
+
+4. ReturnItem()
+
+Id qəbul etməlidir.
+
+Verilmiş Id-yə uyğun LibraryItem tapılmalıdır.
+
+Əgər item tapılmasa:
+
+"Item not found."
+
+mesajı çıxmalıdır.
+
+Əgər item götürülməyibsə:
+
+"Item is not borrowed."
+
+mesajı çıxmalıdır.
+
+Əks halda IsBorrowed false edilməlidir.
+
+============================================================
+TASK 5 — EXTENSION METHODS
+==========================
+
+LibraryExtensions adlı static class yaradın.
+
+1. GetStatus()
+
+LibraryItem üçün extension method yaradın.
+
+Əgər IsBorrowed true-dursa:
+
+"Borrowed"
+
+qaytarsın.
+
+Əks halda:
+
+"Available"
+
+qaytarsın.
+
+2. GetLateFee()
+
+LibraryItem üçün extension method yaradın.
+
+Metod parametr olaraq days qəbul etməlidir.
+
+LibraryItem-in CalculateLateFee() metodundan istifadə edərək gecikmə cəriməsini qaytarmalıdır.
+
+3. GetShortInfo()
+
+LibraryItem üçün extension method yaradın.
+
+Aşağıdakı formatda məlumat qaytarmalıdır:
+
+[Id] Title - Author
+
+Məsələn:
+
+[15] Clean Code - Robert Martin
+
+============================================================
+TASK 6 — POLYMORPHISM
+=====================
+
+Program.cs daxilində aşağıdakı obyektləri yaradın:
+
+* Ən azı 2 Book
+* Ən azı 1 Magazine
+* Ən azı 1 EBook
+
+Obyektlər LibraryItem tipində də istifadə olunmalıdır.
+
+Məsələn:
+
+LibraryItem item = new Book(...);
+
+Daha sonra:
+
+item.CalculateLateFee(...);
+
+çağırılmalıdır.
+
+Polymorphism istifadə edərək uyğun class-ın override etdiyi metodun işləməsini yoxlayın.
+
+============================================================
+TASK 7 — PROGRAM.CS TESTLƏRİ
+============================
+
+Program.cs daxilində aşağıdakı əməliyyatların hamısını test edin:
+
+* Book obyekti yaratmaq
+* Magazine obyekti yaratmaq
+* EBook obyekti yaratmaq
+* AddItem()
+* FindById()
+* BorrowItem()
+* ReturnItem()
+* ToString()
+* GetStatus()
+* GetLateFee()
+* GetShortInfo()
+* CalculateLateFee()
+* Polymorphism
+
+Proqramın sonunda obyektlərin məlumatlarını Console-a çıxarın.
