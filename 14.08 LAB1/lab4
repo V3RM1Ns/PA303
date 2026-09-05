@@ -537,3 +537,535 @@ BatteryCapacity = 0
 Hər bir halda validation işləməlidir.
 Uyğun error mesajı Console-a çıxarılmalıdır.
 ============================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+C# PRAKTİKİ TAPŞIRIQ
+
+============================================================
+TASK 1 — HOTEL ABSTRACT CLASS
+============================================================
+
+Room adlı abstract class yaradın.
+
+Property-lər:
+
+Id
+RoomNumber
+Floor
+PricePerDay
+IsOccupied
+
+Qaydalar:
+
+Id 0-dan böyük olmalıdır.
+RoomNumber boş ola bilməz.
+Floor 0-dan kiçik ola bilməz.
+PricePerDay 0-dan böyük olmalıdır.
+IsOccupied default olaraq false olmalıdır.
+
+Abstract metod yaradın:
+
+CalculatePrice(int days)
+
+Metod double tipində nəticə qaytarmalıdır.
+
+
+============================================================
+TASK 2 — STANDARD ROOM
+============================================================
+
+StandardRoom adlı class yaradın.
+
+Room class-dan miras alsın.
+
+Əlavə property:
+
+BedCount
+
+Constructor aşağıdakı məlumatları qəbul etməlidir:
+
+Id
+RoomNumber
+Floor
+PricePerDay
+BedCount
+
+Qayda:
+
+BedCount 0-dan böyük olmalıdır.
+
+CalculatePrice() metodunu override edin.
+
+Qiymət qaydaları:
+
+1-3 gün → hər gün üçün normal qiymət
+4-7 gün → hər gün üçün 10% endirim
+7 gündən çox → hər gün üçün 20% endirim
+
+ToString() metodunu override edin.
+
+
+============================================================
+TASK 3 — VIP ROOM
+============================================================
+
+VipRoom adlı class yaradın.
+
+Room class-dan miras alsın.
+
+Əlavə property:
+
+HasJacuzzi
+
+Constructor aşağıdakı məlumatları qəbul etməlidir:
+
+Id
+RoomNumber
+Floor
+PricePerDay
+HasJacuzzi
+
+CalculatePrice() metodunu override edin.
+
+Qiymət qaydaları:
+
+1-3 gün → hər gün üçün PricePerDay + 50 AZN
+4-7 gün → hər gün üçün PricePerDay + 40 AZN
+7 gündən çox → hər gün üçün PricePerDay + 30 AZN
+
+ToString() metodunu override edin.
+
+
+============================================================
+TASK 4 — ENUM
+============================================================
+
+RoomType adlı enum yaradın.
+
+Enum aşağıdakı dəyərlərdən ibarət olsun:
+
+Standard
+VIP
+Suite
+Family
+
+
+============================================================
+TASK 5 — SUITE ROOM
+============================================================
+
+SuiteRoom adlı class yaradın.
+
+Room class-dan miras alsın.
+
+Əlavə property-lər:
+
+RoomCount
+HasKitchen
+
+Qaydalar:
+
+RoomCount 0-dan böyük olmalıdır.
+
+CalculatePrice() metodunu override edin.
+
+Qiymət qaydaları:
+
+1-3 gün → PricePerDay * 1.5
+4-7 gün → PricePerDay * 1.3
+7 gündən çox → PricePerDay * 1.2
+
+ToString() metodunu override edin.
+
+
+============================================================
+TASK 6 — INTERFACE
+============================================================
+
+IHotelService adlı interface yaradın.
+
+Interface daxilində aşağıdakı metodlar olmalıdır:
+
+AddRoom(Room room)
+FindById(int id)
+BookRoom(int id)
+CancelBooking(int id)
+
+
+============================================================
+TASK 7 — HOTEL SERVICE
+============================================================
+
+HotelService adlı class yaradın.
+
+IHotelService interface-ini implement etsin.
+
+Class daxilində Room tipində static array yaradın.
+
+Array-in ölçüsü 20 olsun.
+
+Məsələn:
+
+static Room[] rooms = new Room[20];
+
+
+============================================================
+TASK 8 — ADD ROOM
+============================================================
+
+AddRoom() metodu yaradın.
+
+Yeni otaq array-ə əlavə edilməlidir.
+
+Əgər eyni Id artıq mövcuddursa:
+
+"Room with this ID already exists."
+
+mesajını Console-a çıxarın.
+
+Əgər array-də boş yer yoxdursa:
+
+"Hotel is full."
+
+mesajını Console-a çıxarın.
+
+
+============================================================
+TASK 9 — FIND BY ID
+============================================================
+
+FindById(int id) metodu yaradın.
+
+Verilmiş Id-yə uyğun otaq tapılmalıdır.
+
+Tapılarsa həmin Room obyekti qaytarılmalıdır.
+
+Tapılmazsa null qaytarılmalıdır.
+
+
+============================================================
+TASK 10 — BOOK ROOM
+============================================================
+
+BookRoom(int id) metodu yaradın.
+
+Verilmiş Id-yə uyğun otaq tapılmalıdır.
+
+Əgər otaq tapılmasa:
+
+"Room not found."
+
+mesajı çıxmalıdır.
+
+Əgər otaq artıq tutulubsa:
+
+"Room is already occupied."
+
+mesajı çıxmalıdır.
+
+Əks halda:
+
+IsOccupied true edilməlidir.
+
+
+============================================================
+TASK 11 — CANCEL BOOKING
+============================================================
+
+CancelBooking(int id) metodu yaradın.
+
+Verilmiş Id-yə uyğun otaq tapılmalıdır.
+
+Əgər otaq tapılmasa:
+
+"Room not found."
+
+mesajı çıxmalıdır.
+
+Əgər otaq tutulmayıbsa:
+
+"Room is not occupied."
+
+mesajı çıxmalıdır.
+
+Əks halda:
+
+IsOccupied false edilməlidir.
+
+
+============================================================
+TASK 12 — EXTENSION METHODS
+============================================================
+
+HotelExtensions adlı static class yaradın.
+
+
+1. GetStatus()
+
+Room üçün extension method yaradın.
+
+Əgər IsOccupied true-dursa:
+
+"Occupied"
+
+qaytarsın.
+
+Əks halda:
+
+"Available"
+
+qaytarsın.
+
+
+2. GetShortInfo()
+
+Room üçün extension method yaradın.
+
+Aşağıdakı formatda məlumat qaytarmalıdır:
+
+[Id] RoomNumber - Floor Floor
+
+Məsələn:
+
+[5] A-205 - 2 Floor
+
+
+3. GetPrice()
+
+Room üçün extension method yaradın.
+
+Metod parametr olaraq days qəbul etməlidir.
+
+CalculatePrice(days) metodundan istifadə edərək ümumi qiyməti qaytarmalıdır.
+
+
+============================================================
+TASK 13 — POLYMORPHISM
+============================================================
+
+Aşağıdakı obyektləri yaradın:
+
+Ən azı 2 StandardRoom
+Ən azı 2 VipRoom
+Ən azı 1 SuiteRoom
+
+Obyektlər Room tipində istifadə olunmalıdır.
+
+Məsələn:
+
+Room room1 = new StandardRoom(...);
+Room room2 = new VipRoom(...);
+Room room3 = new SuiteRoom(...);
+
+Daha sonra:
+
+room1.CalculatePrice(5);
+room2.CalculatePrice(5);
+room3.CalculatePrice(5);
+
+çağırılmalıdır.
+
+Polymorphism istifadə edərək uyğun class-ın override etdiyi metodun işləməsini yoxlayın.
+
+
+============================================================
+TASK 14 — POLYMORPHIC ARRAY
+============================================================
+
+Room tipində array yaradın.
+
+Array daxilində:
+
+2 StandardRoom
+2 VipRoom
+2 SuiteRoom
+
+olmalıdır.
+
+foreach istifadə edərək bütün otaqları gəzin.
+
+Hər otaq üçün aşağıdakı metodları çağırın:
+
+ToString()
+CalculatePrice()
+GetStatus()
+GetShortInfo()
+GetPrice()
+
+
+============================================================
+TASK 15 — SEARCH BY ROOM NUMBER
+============================================================
+
+HotelService daxilində:
+
+FindByRoomNumber(string roomNumber)
+
+metodu yaradın.
+
+Verilmiş otaq nömrəsinə uyğun otaqları tapmalıdır.
+
+Axtarış case-insensitive olmalıdır.
+
+Məsələn:
+
+FindByRoomNumber("A-205");
+
+A-205 nömrəli otağı tapmalıdır.
+
+
+============================================================
+TASK 16 — REMOVE ROOM
+============================================================
+
+HotelService daxilində:
+
+RemoveRoom(int id)
+
+metodu yaradın.
+
+Id tapılmazsa:
+
+"Room not found."
+
+mesajı çıxmalıdır.
+
+Id tapılarsa həmin otaq array-dən silinməlidir.
+
+Array-də həmin element null edilməlidir.
+
+Uğurlu olduqda:
+
+"Room removed successfully."
+
+mesajı çıxmalıdır.
+
+
+============================================================
+TASK 17 — HOTEL STATISTICS
+============================================================
+
+HotelService daxilində aşağıdakı metodları yaradın:
+
+GetTotalRoomCount()
+GetOccupiedRoomCount()
+GetAvailableRoomCount()
+GetVipRoomCount()
+GetStandardRoomCount()
+GetSuiteRoomCount()
+
+Məsələn:
+
+Total Rooms: 10
+Occupied Rooms: 4
+Available Rooms: 6
+VIP Rooms: 2
+Standard Rooms: 5
+Suite Rooms: 3
+
+
+============================================================
+TASK 18 — SORTING
+============================================================
+
+HotelService daxilində aşağıdakı metodları yaradın:
+
+
+1. SortByPrice()
+
+Otaqları PricePerDay-ə görə artan sıra ilə sıralasın.
+
+
+2. SortByFloor()
+
+Otaqları Floor-a görə artan sıra ilə sıralasın.
+
+
+3. SortByRoomNumber()
+
+Otaqları RoomNumber-a görə A-Z sıralasın.
+
+
+============================================================
+TASK 19 — INVALID DATA
+============================================================
+
+Aşağıdakı səhv məlumatlarla obyekt yaratmağa çalışın:
+
+Id = -1
+RoomNumber = ""
+Floor = -2
+PricePerDay = 0
+BedCount = 0
+RoomCount = 0
+
+Hər bir halda validation işləməlidir.
+
+Uyğun error mesajı Console-a çıxarılmalıdır.
+
+
+============================================================
+TASK 20 — PROGRAM.CS TEST
+============================================================
+
+Program.cs daxilində aşağıdakı əməliyyatların hamısını test edin:
+
+StandardRoom obyekti yaratmaq
+VipRoom obyekti yaratmaq
+SuiteRoom obyekti yaratmaq
+AddRoom()
+FindById()
+BookRoom()
+CancelBooking()
+ToString()
+GetStatus()
+GetShortInfo()
+GetPrice()
+CalculatePrice()
+Polymorphism
+Search
+RemoveRoom()
+Statistics
+Sorting
+Validation
+
+Proqramın sonunda bütün otaqların məlumatlarını Console-a çıxarın.
+
