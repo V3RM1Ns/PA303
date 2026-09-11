@@ -1,0 +1,594 @@
+TASK 1 — LIBRARY SYSTEM
+
+Book tipindən ibarət bir arrayiniz olacaq.
+
+Book class-ının içində aşağıdakı property-lər olacaq:
+
+* Id
+* Title
+* Author
+* PublishDate
+* Price
+
+Book obyektləri constructor vasitəsilə yaradılmalıdır.
+
+Library class-ında aşağıdakı method olmalıdır:
+
+FindBooks()
+
+Metoda iki fərqli tarix və minimum qiymət göndərilir.
+
+Verilən tarixlər arasında çap olunmuş və qiyməti minimum qiymətdən böyük olan kitabların sayı qaytarılmalıdır.
+
+Əlavə şərt:
+
+* Book obyektinin PublishDate dəyəri constructor vasitəsilə göndərilməlidir.
+* Book üçün Title, Author və Price məlumatları olmadan obyekt yaratmaq mümkün olmamalıdır.
+* Array-dən istifadə edilməlidir.
+
+---
+
+TASK 2 — HOTEL RESERVATION SYSTEM
+
+Aşağıdakı custom exception-ları yaradın:
+
+* CapacityException
+* NotFoundException
+* AlreadyReservedException
+
+ROOM CLASS
+
+Room class-ında aşağıdakı property-lər olacaq:
+
+* Id
+* Name
+* Price
+* PersonCapacity
+* IsAvailable
+
+Id:
+
+* Qıraqdan set etmək mümkün olmamalıdır.
+* Yalnız get etmək mümkün olmalıdır.
+* Hər yeni Room yaradıldıqda Id avtomatik olaraq 1 vahid artmalıdır.
+
+IsAvailable:
+
+* Default olaraq true olmalıdır.
+
+ShowInfo()
+
+Room haqqında bütün məlumatları ekrana çıxarmalıdır.
+
+ToString()
+
+ToString() methodunu override edin və ShowInfo() nəticəsini qaytarın.
+
+Room obyekti yaratmaq üçün aşağıdakı məlumatlar mütləq olmalıdır:
+
+* Name
+* Price
+* PersonCapacity
+
+HOTEL CLASS
+
+Hotel class-ında:
+
+* Name
+* Rooms
+
+property/field-ləri olacaq.
+
+Rooms:
+
+* Room tipindən ibarət array olmalıdır.
+* Private olmalıdır.
+
+AddRoom()
+
+Parametr olaraq Room qəbul edir və Room-u Rooms array-inə əlavə edir.
+
+Əgər array doludursa uyğun şəkildə yeni array yaradıb mövcud otaqları ora köçürün.
+
+INDEXER
+
+Hotel class üçün indexer yaradın.
+
+Məsələn:
+
+hotel[0]
+
+yazıldıqda Rooms array-in 0-cı elementi qaytarılmalıdır.
+
+Həm get, həm də set dəstəklənməlidir.
+
+HOTEL CONSTRUCTOR
+
+Name olmadan Hotel obyekti yaratmaq mümkün olmamalıdır.
+
+RESERVE()
+
+Reserve() methodu nullable int tipində roomId qəbul etməlidir.
+
+Məsələn:
+
+Reserve(5)
+
+Method aşağıdakı əməliyyatları etməlidir:
+
+1. Göndərilən roomId-yə uyğun Room tapılmalıdır.
+2. Room tapılmadıqda NotFoundException throw edilməlidir.
+3. Room tapıldıqda IsAvailable yoxlanılmalıdır.
+4. Əgər IsAvailable false-dursa AlreadyReservedException throw edilməlidir.
+5. Əgər IsAvailable true-dursa false edilməlidir.
+6. Otaq uğurla rezervasiya edildikdə ekrana məlumat çıxarılmalıdır.
+
+---
+
+TASK 3 — MUSIC PLAYER SYSTEM
+
+MusicPlayer adlı class yaradın.
+
+Aşağıdakı field/property-lər olmalıdır:
+
+* Brand
+* Model
+* Volume
+* CurrentSong
+* IsPlaying
+* BatteryPercent
+
+Bütün məlumatlar doldurulmadan MusicPlayer obyekti yaratmaq mümkün olmamalıdır.
+
+Play()
+
+Cari mahnını başladır.
+
+Əgər CurrentSong yoxdursa uyğun mesaj göstərilməlidir.
+
+Əgər mahnı artıq oxuyursa:
+
+"Song is already playing!"
+
+mesajı göstərilməlidir.
+
+Pause()
+
+Mahnını dayandırmalıdır.
+
+Əgər mahnı oxumursa:
+
+"Player is already paused!"
+
+mesajı göstərilməlidir.
+
+IncreaseVolume()
+
+Səsi 1 vahid artırmalıdır.
+
+Volume maksimum 100 ola bilər.
+
+100-dən yuxarı qalxmasına icazə verilməməlidir.
+
+DecreaseVolume()
+
+Səsi 1 vahid azaltmalıdır.
+
+Volume 0-dan aşağı düşməməlidir.
+
+ChangeSong()
+
+Parametr olaraq yeni mahnı adı qəbul edir və CurrentSong dəyərini dəyişir.
+
+ShowInfo()
+
+Player haqqında bütün məlumatları ekrana çıxarır.
+
+ToString()
+
+ShowInfo() nəticəsini qaytarmalıdır.
+
+MENYU
+
+0 - Player haqqında məlumat almaq üçün
+1 - Play
+2 - Pause
+3 - Səsi artırmaq
+4 - Səsi azaltmaq
+5 - Mahnını dəyişmək
+6 - Proqramdan çıxmaq
+
+---
+
+TASK 4 — BANK ACCOUNT SYSTEM
+
+Account class yaradın.
+
+Property-lər:
+
+* Id
+* AccountNumber
+* OwnerName
+* Balance
+* IsActive
+
+Id avtomatik artmalıdır.
+
+AccountNumber constructor vasitəsilə yaradılmalıdır.
+
+Balance default olaraq 0 olmalıdır.
+
+IsActive default olaraq true olmalıdır.
+
+Aşağıdakı custom exception-ları yaradın:
+
+* InsufficientBalanceException
+* AccountNotFoundException
+* InvalidAmountException
+
+Deposit()
+
+Parametr olaraq amount qəbul edir.
+
+Əgər amount 0 və ya mənfidirsə:
+
+InvalidAmountException
+
+throw edilməlidir.
+
+Əks halda Balance artırılmalıdır.
+
+Withdraw()
+
+Parametr olaraq amount qəbul edir.
+
+Əgər amount 0 və ya mənfidirsə:
+
+InvalidAmountException
+
+throw edilməlidir.
+
+Əgər Balance amount-dan azdırsa:
+
+InsufficientBalanceException
+
+throw edilməlidir.
+
+Əks halda Balance azaldılmalıdır.
+
+Transfer()
+
+Parametr olaraq:
+
+* digər Account
+* amount
+
+qəbul edir.
+
+Bir account-dan digər account-a pul köçürülməlidir.
+
+Transfer zamanı:
+
+1. Amount yoxlanmalıdır.
+2. Göndərən account-un balansı yoxlanmalıdır.
+3. Pul göndərən account-dan çıxılmalıdır.
+4. Qəbul edən account-a əlavə edilməlidir.
+
+ShowInfo()
+
+Account haqqında bütün məlumatları göstərməlidir.
+
+Bank class yaradın.
+
+Private Account[] array saxlamalıdır.
+
+AddAccount()
+
+Yeni Account əlavə edir.
+
+GetAccount()
+
+AccountNumber qəbul edir və uyğun account-u qaytarır.
+
+Tapılmadıqda AccountNotFoundException throw edilməlidir.
+
+INDEXER
+
+Bank class üçün indexer yaradın.
+
+Məsələn:
+
+bank[0]
+
+yazıldıqda 0-cı Account qaytarılmalıdır.
+
+MENYU
+
+0 - Bütün account-ları göstər
+1 - Yeni account yarat
+2 - Deposit
+3 - Withdraw
+4 - Transfer
+5 - Account məlumatlarını göstər
+6 - Account məlumatlarını dəyiş
+7 - Proqramdan çıx
+
+---
+
+TASK 5 — PARKING SYSTEM
+
+ParkingSpot class yaradın.
+
+Property-lər:
+
+* Id
+* SpotNumber
+* IsOccupied
+* VehiclePlate
+* VehicleType
+
+Id avtomatik artmalıdır.
+
+IsOccupied default olaraq false olmalıdır.
+
+Park class yaradın.
+
+Private ParkingSpot[] array saxlamalıdır.
+
+AddSpot()
+
+Yeni parking yeri əlavə edir.
+
+ParkVehicle()
+
+Parametr olaraq:
+
+* spotId
+* vehiclePlate
+* vehicleType
+
+qəbul edir.
+
+Əgər parking yeri tapılmasa:
+
+NotFoundException
+
+throw edilməlidir.
+
+Əgər parking yeri artıq doludursa:
+
+SpotOccupiedException
+
+throw edilməlidir.
+
+Əks halda:
+
+* IsOccupied = true
+* VehiclePlate doldurulmalıdır
+* VehicleType doldurulmalıdır
+
+RemoveVehicle()
+
+spotId qəbul edir.
+
+Maşını parking yerindən çıxarır.
+
+Əgər spot boşdursa uyğun exception throw edilməlidir.
+
+GetAvailableSpots()
+
+Boş parking yerlərinin sayını qaytarır.
+
+GetOccupiedSpots()
+
+Dolu parking yerlərinin sayını qaytarır.
+
+INDEXER
+
+Park üçün indexer yaradın.
+
+park[2]
+
+yazıldıqda 2-ci ParkingSpot qaytarılmalıdır.
+
+Həm get, həm set olmalıdır.
+
+MENYU
+
+0 - Bütün parking yerlərini göstər
+1 - Parking yeri əlavə et
+2 - Maşın yerləşdir
+3 - Maşını çıxart
+4 - Boş yerlərin sayını göstər
+5 - Dolu yerlərin sayını göstər
+6 - Parking yerini redaktə et
+7 - Proqramdan çıx
+
+---
+
+TASK 6 — SHOPPING CART SYSTEM
+
+Product class yaradın.
+
+Property-lər:
+
+* Id
+* Name
+* Price
+* StockCount
+
+Id avtomatik artmalıdır.
+
+Name və Price olmadan Product yaratmaq mümkün olmamalıdır.
+
+ShoppingCart class yaradın.
+
+Private Product[] products array-i saxlamalıdır.
+
+AddProduct()
+
+Product qəbul edir və səbətə əlavə edir.
+
+RemoveProduct()
+
+Product Id qəbul edir və səbətdən silir.
+
+Product tapılmadıqda:
+
+NotFoundException
+
+throw edilməlidir.
+
+GetTotalPrice()
+
+Səbətdəki bütün məhsulların ümumi qiymətini qaytarmalıdır.
+
+GetProductCount()
+
+Səbətdə neçə məhsul olduğunu qaytarmalıdır.
+
+ClearCart()
+
+Səbəti tamamilə təmizləyir.
+
+INDEXER
+
+ShoppingCart üçün indexer yaradın.
+
+cart[0]
+
+yazıldıqda səbətdəki 0-cı Product qaytarılmalıdır.
+
+Həm get, həm set olmalıdır.
+
+ToString()
+
+Səbətdəki bütün məhsulların məlumatlarını qaytarmalıdır.
+
+MENYU
+
+0 - Səbəti göstər
+1 - Məhsul əlavə et
+2 - Məhsul sil
+3 - Ümumi qiyməti göstər
+4 - Məhsul sayını göstər
+5 - Səbəti təmizlə
+6 - Məhsulu redaktə et
+7 - Proqramdan çıx
+
+---
+
+TASK 7 — CINEMA TICKET SYSTEM
+
+Movie class yaradın.
+
+Property-lər:
+
+* Id
+* Name
+* Genre
+* Duration
+* Rating
+
+Id avtomatik artmalıdır.
+
+CinemaHall class yaradın.
+
+Property-lər:
+
+* Id
+* Name
+* SeatCapacity
+* SoldTicketCount
+
+SoldTicketCount default olaraq 0 olmalıdır.
+
+Ticket class yaradın.
+
+Property-lər:
+
+* Id
+* Movie
+* CinemaHall
+* Price
+* CustomerName
+
+Bütün məlumatlar constructor vasitəsilə doldurulmalıdır.
+
+Cinema class yaradın.
+
+Private Movie[] Movies array-i saxlamalıdır.
+
+Private CinemaHall[] Halls array-i saxlamalıdır.
+
+Private Ticket[] Tickets array-i saxlamalıdır.
+
+AddMovie()
+
+Yeni film əlavə edir.
+
+AddHall()
+
+Yeni zal əlavə edir.
+
+SellTicket()
+
+MovieId, HallId, CustomerName və Price qəbul edir.
+
+Əgər film tapılmasa:
+
+MovieNotFoundException
+
+Əgər zal tapılmasa:
+
+HallNotFoundException
+
+Əgər zalda yer qalmayıbsa:
+
+HallFullException
+
+throw edilməlidir.
+
+Uğurlu satış zamanı:
+
+* Ticket yaradılmalıdır.
+* SoldTicketCount 1 vahid artmalıdır.
+
+CancelTicket()
+
+TicketId qəbul edir.
+
+Ticket tapılır və satış ləğv edilir.
+
+SoldTicketCount 1 vahid azalmalıdır.
+
+GetMovieTickets()
+
+Verilən MovieId üçün satılmış biletlərin sayını qaytarmalıdır.
+
+GetTotalIncome()
+
+Cinema daxilində satılmış bütün biletlərin ümumi gəlirini qaytarmalıdır.
+
+INDEXER
+
+Cinema üçün Movie array-i üzrə indexer yaradın.
+
+cinema[0]
+
+yazıldıqda ilk Movie qaytarılmalıdır.
+
+MENYU
+
+0 - Filmləri göstər
+1 - Yeni film əlavə et
+2 - Zalların siyahısını göstər
+3 - Yeni zal əlavə et
+4 - Bilet sat
+5 - Bilet satışını ləğv et
+6 - Film üzrə bilet sayını göstər
+7 - Ümumi gəliri göstər
+8 - Bütün biletləri göstər
+9 - Proqramdan çıx
+
+---
