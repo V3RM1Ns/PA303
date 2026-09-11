@@ -1,419 +1,350 @@
-# Online Course Management System
+# ONLINE COURSE MANAGEMENT SYSTEM
 
-## 📌 Task Description
+## TASK DESCRIPTION
 
-`Entity Framework Core` istifadə edərək **Online Course Management System** yaradın.
+Entity Framework Core istifadə edərək Online Course Management System yaradın.
 
-Sistem vasitəsilə:
+Sistem vasitəsilə aşağıdakı əməliyyatlar həyata keçirilməlidir:
 
-* tələbələr əlavə etmək
-* tələbələri göstərmək
-* tələbə axtarmaq
-* tələbə məlumatlarını dəyişmək
-* tələbə silmək
-* kurs əlavə etmək
-* kursları göstərmək
-* kurs axtarmaq
-* kurs məlumatlarını dəyişmək
-* kurs silmək
-* tələbəni kursa qeydiyyatdan keçirmək
-* tələbənin qeydiyyatda olduğu kursları göstərmək
-* kursda qeydiyyatda olan tələbələri göstərmək
-* qeydiyyatı silmək
-* filter tətbiq etmək
-* pagination tətbiq etmək
+* Tələbə əlavə etmək
+* Bütün tələbələri göstərmək
+* ID ilə tələbə tapmaq
+* Tələbə axtarmaq
+* Tələbə məlumatlarını dəyişmək
+* Tələbə silmək
+* Kurs əlavə etmək
+* Bütün kursları göstərmək
+* ID ilə kurs tapmaq
+* Kurs axtarmaq
+* Kurs məlumatlarını dəyişmək
+* Kurs silmək
+* Tələbəni kursa qeydiyyatdan keçirmək
+* Tələbənin qeydiyyatda olduğu kursları göstərmək
+* Kursda qeydiyyatda olan tələbələri göstərmək
+* Qeydiyyatı silmək
+* Kursları qiymətə görə filter etmək
+* Student pagination
+* Course pagination
+* Hesabatlar hazırlamaq
 
-mümkün olmalıdır.
-
----
-
-# 1. Project Setup
+1. PROJECT SETUP
+   ================
 
 Yeni Console Application yaradın.
 
-Məsələn:
+Project adı:
 
-```text
 OnlineCourseManagement
-```
 
-Layihədə `Entity Framework Core` istifadə edilməlidir.
+Layihədə Entity Framework Core istifadə edilməlidir.
 
-Database olaraq:
+Database adı:
 
-```text
 OnlineCourseDb
-```
 
-adında database yaradılmalıdır.
+Database connection AppDbContext vasitəsilə qurulmalıdır.
 
----
-
-# 2. Entities
+2. ENTITIES
+   ===========
 
 Sistemdə aşağıdakı entity-lər yaradılmalıdır:
 
-```text
-Student
-Course
-Enrollment
-```
+* Student
+* Course
+* Enrollment
 
----
+3. STUDENT ENTITY
+   =================
 
-# 3. Student Entity
+Student class-ı aşağıdakı property-lərə sahib olmalıdır:
 
-`Student` class-ı aşağıdakı property-lərə sahib olmalıdır:
-
-```text
 Id
 FullName
 Email
 Age
 CreatedAt
-```
 
-### Property-lərin mənası
+Property-lərin mənası:
 
-* `Id` — tələbənin unikal ID-si
-* `FullName` — tələbənin adı və soyadı
-* `Email` — tələbənin email ünvanı
-* `Age` — tələbənin yaşı
-* `CreatedAt` — tələbənin sistemə əlavə edildiyi tarix
+Id
+Tələbənin unikal ID-si.
 
-`Id` primary key olmalıdır.
+FullName
+Tələbənin adı və soyadı.
 
-`CreatedAt` tələbə yaradılarkən avtomatik olaraq cari tarixlə doldurulmalıdır.
+Email
+Tələbənin email ünvanı.
 
----
+Age
+Tələbənin yaşı.
 
-# 4. Course Entity
+CreatedAt
+Tələbənin sistemə əlavə edildiyi tarix.
 
-`Course` class-ı:
+Id Primary Key olmalıdır.
 
-```text
+CreatedAt tələbə yaradılarkən avtomatik olaraq cari tarixlə doldurulmalıdır.
+
+4. COURSE ENTITY
+   ================
+
+Course class-ı aşağıdakı property-lərə sahib olmalıdır:
+
 Id
 Name
 Description
 Price
 Duration
 CreatedAt
-```
 
-property-lərinə sahib olmalıdır.
+Property-lərin mənası:
 
-### Property-lərin mənası
+Id
+Kursun unikal ID-si.
 
-* `Id` — kursun ID-si
-* `Name` — kursun adı
-* `Description` — kurs haqqında məlumat
-* `Price` — kursun qiyməti
-* `Duration` — kursun müddəti
-* `CreatedAt` — kursun yaradıldığı tarix
+Name
+Kursun adı.
 
----
+Description
+Kurs haqqında məlumat.
 
-# 5. Enrollment Entity
+Price
+Kursun qiyməti.
 
-Tələbə ilə kurs arasındakı əlaqəni saxlamaq üçün `Enrollment` entity yaradılmalıdır.
+Duration
+Kursun müddəti.
 
-```text
+CreatedAt
+Kursun yaradıldığı tarix.
+
+5. ENROLLMENT ENTITY
+   ====================
+
+Tələbə ilə kurs arasındakı əlaqəni saxlamaq üçün Enrollment entity yaradılmalıdır.
+
+Property-lər:
+
 Id
 StudentId
 CourseId
 EnrollmentDate
-```
 
-### Property-lər
+Property-lərin mənası:
 
-* `Id` — qeydiyyatın ID-si
-* `StudentId` — tələbənin ID-si
-* `CourseId` — kursun ID-si
-* `EnrollmentDate` — tələbənin kursa qeydiyyatdan keçdiyi tarix
+Id
+Enrollment-un unikal ID-si.
 
----
+StudentId
+Tələbənin ID-si.
 
-# 6. Entity Relationships
+CourseId
+Kursun ID-si.
 
-Sistemdə aşağıdakı əlaqə qurulmalıdır:
+EnrollmentDate
+Tələbənin kursa qeydiyyatdan keçdiyi tarix.
 
-```text
-Student
-   |
-   | 1
-   |
-   | *
-Enrollment
-   |
-   | *
-   |
-   | 1
-Course
-```
+EnrollmentDate avtomatik olaraq cari tarixlə doldurulmalıdır.
 
-Bir `Student` bir neçə `Enrollment`-a sahib ola bilər.
+6. ENTITY RELATIONSHIPS
+   =======================
 
-Bir `Course` bir neçə `Enrollment`-a sahib ola bilər.
+Sistemdə aşağıdakı relationship qurulmalıdır:
 
-`Enrollment` isə həm `Student`, həm də `Course` ilə əlaqəli olmalıdır.
-
-Nəticədə:
-
-```text
 Student 1 ---- * Enrollment * ---- 1 Course
-```
 
-əlaqəsi yaranmalıdır.
+Bir Student bir neçə Enrollment-a sahib ola bilər.
 
----
+Bir Course bir neçə Enrollment-a sahib ola bilər.
 
-# 7. Navigation Properties
+Enrollment həm Student, həm də Course ilə əlaqəli olmalıdır.
 
-Entity-lərdə navigation property-lər yaradılmalıdır.
+7. NAVIGATION PROPERTIES
+   =======================
 
-Məsələn `Student` daxilində:
+Student daxilində:
 
-```text
 Enrollments
-```
 
-`Course` daxilində:
+Course daxilində:
 
-```text
 Enrollments
-```
 
-`Enrollment` daxilində isə:
+Enrollment daxilində:
 
-```text
 Student
 Course
-```
 
-navigation property-ləri olmalıdır.
+navigation property-ləri yaradılmalıdır.
 
----
+8. DBCONTEXT
+   ============
 
-# 8. DbContext
+AppDbContext class-ı yaradılmalıdır.
 
-`AppDbContext` class-ı yaradılmalıdır.
+Aşağıdakı DbSet-lər əlavə olunmalıdır:
 
-Aşağıdakı `DbSet`-lər əlavə olunmalıdır:
-
-```text
 DbSet<Student>
 DbSet<Course>
 DbSet<Enrollment>
-```
 
-Database connection `AppDbContext` vasitəsilə qurulmalıdır.
+Database connection AppDbContext vasitəsilə qurulmalıdır.
 
----
-
-# 9. Database Migration
+9. DATABASE MIGRATION
+   =====================
 
 EF Core Migration istifadə edin.
 
-Database-i migration vasitəsilə yaradın.
+Migration yaradın və database-i update edin.
 
-Nəticədə database-də ən azı aşağıdakı table-lar yaranmalıdır:
+Database-də aşağıdakı table-lar yaranmalıdır:
 
-```text
 Students
 Courses
 Enrollments
-```
 
 Foreign Key-lər düzgün qurulmalıdır.
 
----
+10. STUDENT CRUD
+    ================
 
-# 10. Student CRUD
+## 10.1 CREATE STUDENT
 
-## 10.1 Create Student
+Console-dan yeni tələbənin məlumatlarını alın.
 
-Console-dan yeni tələbənin məlumatları daxil edilməlidir.
+Nümunə:
 
-```text
 ===== ADD STUDENT =====
 
 Enter full name:
 Ali Valiyev
 
 Enter email:
-ali@gmail.com
+[ali@gmail.com](mailto:ali@gmail.com)
 
 Enter age:
 21
-```
 
 Tələbə database-ə əlavə edilməlidir.
 
-`CreatedAt` avtomatik olaraq cari tarixlə doldurulmalıdır.
+CreatedAt avtomatik doldurulmalıdır.
 
 Nəticə:
 
-```text
 Student added successfully!
-```
 
----
+## 10.2 GET ALL STUDENTS
 
-# 11. Get All Students
-
-Database-də olan bütün tələbələr göstərilməlidir.
+Database-də olan bütün tələbələri göstərin.
 
 Nümunə:
 
-```text
 ===== STUDENTS =====
 
-1 | Ali Valiyev | ali@gmail.com | 21
-2 | Leyla Hasanli | leyla@gmail.com | 22
-3 | Murad Aliyev | murad@gmail.com | 20
-4 | Kamran Aliyev | kamran@gmail.com | 23
-```
+1 | Ali Valiyev | [ali@gmail.com](mailto:ali@gmail.com) | 21
+2 | Leyla Hasanli | [leyla@gmail.com](mailto:leyla@gmail.com) | 22
+3 | Murad Aliyev | [murad@gmail.com](mailto:murad@gmail.com) | 20
+4 | Kamran Aliyev | [kamran@gmail.com](mailto:kamran@gmail.com) | 23
 
-Tələbələri EF Core vasitəsilə database-dən əldə edin.
+## 10.3 GET STUDENT BY ID
 
----
+Console-dan Student ID alın.
 
-# 12. Get Student By Id
-
-Console-dan tələbənin ID-si daxil edilməlidir:
-
-```text
 Enter student id:
 2
-```
 
-Tələbə tapılarsa:
+Student tapılarsa:
 
-```text
 ===== STUDENT =====
 
 Id: 2
 Full Name: Leyla Hasanli
-Email: leyla@gmail.com
+Email: [leyla@gmail.com](mailto:leyla@gmail.com)
 Age: 22
 Created At: 2026-09-11
-```
 
-Tələbə tapılmadıqda:
+Student tapılmadıqda:
 
-```text
 Student not found!
-```
 
----
+## 10.4 SEARCH STUDENT
 
-# 13. Search Student
+Console-dan tələbənin adı və ya adının bir hissəsi daxil edilir.
 
-Console-dan tələbənin adı və ya adının bir hissəsi daxil edilir:
-
-```text
 Enter student name:
 Ali
-```
 
-Database-də adı daxil edilən sözə uyğun olan tələbələr tapılmalıdır.
+Adında "Ali" olan tələbələr göstərilməlidir.
 
-Məsələn:
+Nəticə:
 
-```text
 ===== SEARCH RESULT =====
 
-1 | Ali Valiyev | ali@gmail.com
-4 | Kamran Aliyev | kamran@gmail.com
-7 | Ali Hasanov | ali2@gmail.com
-```
+1 | Ali Valiyev | [ali@gmail.com](mailto:ali@gmail.com)
+4 | Kamran Aliyev | [kamran@gmail.com](mailto:kamran@gmail.com)
+7 | Ali Hasanov | [ali2@gmail.com](mailto:ali2@gmail.com)
 
-`Contains()` istifadə edilə bilər.
+Contains() istifadə edilə bilər.
 
----
+## 10.5 UPDATE STUDENT
 
-# 14. Update Student
+Console-dan tələbənin ID-si alın.
 
-Console-dan tələbənin ID-si daxil edilir:
-
-```text
 Enter student id:
 2
-```
 
-Daha sonra yeni məlumatlar:
+Daha sonra yeni məlumatlar alın:
 
-```text
 Enter new email:
-leyla.new@gmail.com
+[leyla.new@gmail.com](mailto:leyla.new@gmail.com)
 
 Enter new age:
 23
-```
 
-Database-də tələbənin məlumatları update edilməlidir.
+Student məlumatları update edilməlidir.
 
 Nəticə:
 
-```text
 Student updated successfully!
-```
 
-Əgər tələbə mövcud deyilsə:
+Student mövcud deyilsə:
 
-```text
 Student not found!
-```
 
----
+## 10.6 DELETE STUDENT
 
-# 15. Delete Student
+Console-dan Student ID alın.
 
-Console:
-
-```text
 Enter student id:
 4
-```
 
-Tələbə database-dən silinməlidir.
-
-Əgər tələbənin heç bir enrollment-u yoxdursa, birbaşa silinə bilər.
+Student database-dən silinməlidir.
 
 Nəticə:
 
-```text
 Student deleted successfully!
-```
 
-Əgər tələbə mövcud deyilsə:
+Student mövcud deyilsə:
 
-```text
 Student not found!
-```
 
-### Əlavə şərt
+Əlavə şərt:
 
-Əgər tələbənin kurs qeydiyyatları varsa, tələbə silinməzdən əvvəl həmin qeydiyyatların vəziyyəti nəzərə alınmalıdır.
+Əgər tələbənin enrollment-ları varsa, tələbə silinməzdən əvvəl həmin enrollment-ların vəziyyəti nəzərə alınmalıdır.
 
 Məsələn:
 
-```text
 Student has active enrollments.
 Student cannot be deleted!
-```
 
-və ya sistemdə uyğun cascade davranışı konfiqurasiya edilə bilər.
+və ya uyğun Cascade Delete davranışı konfiqurasiya edilə bilər.
 
----
+11. COURSE CRUD
+    ===============
 
-# 16. Course CRUD
-
-## 16.1 Create Course
+## 11.1 CREATE COURSE
 
 Console:
 
-```text
 ===== ADD COURSE =====
 
 Enter course name:
@@ -427,45 +358,31 @@ Enter price:
 
 Enter duration in months:
 6
-```
 
 Course database-ə əlavə edilməlidir.
 
 Nəticə:
 
-```text
 Course added successfully!
-```
 
----
+## 11.2 GET ALL COURSES
 
-# 17. Get All Courses
+Bütün kursları göstərin.
 
-Bütün kursları göstərin:
-
-```text
 ===== COURSES =====
 
 1 | Java Backend | 250 AZN | 6 months
 2 | C# Backend | 300 AZN | 7 months
 3 | SQL Fundamentals | 150 AZN | 3 months
 4 | Spring Boot | 350 AZN | 5 months
-```
 
----
+## 11.3 GET COURSE BY ID
 
-# 18. Get Course By Id
-
-Console:
-
-```text
 Enter course id:
 1
-```
 
 Nəticə:
 
-```text
 ===== COURSE =====
 
 Id: 1
@@ -473,63 +390,41 @@ Name: Java Backend
 Description: Backend development using Java and Spring Boot
 Price: 250 AZN
 Duration: 6 months
-```
 
 Course tapılmadıqda:
 
-```text
 Course not found!
-```
 
----
+## 11.4 SEARCH COURSE
 
-# 19. Search Course
-
-Console:
-
-```text
 Enter course name:
 Java
-```
 
-Adında `Java` olan bütün kurslar göstərilməlidir.
+Adında "Java" olan bütün kursları göstərin.
 
-```text
 ===== SEARCH RESULT =====
 
 1 | Java Backend | 250 AZN
 5 | Advanced Java | 350 AZN
 7 | Java Spring Boot | 400 AZN
-```
 
----
+## 11.5 FILTER COURSES BY PRICE
 
-# 20. Filter Courses By Price
+İstifadəçidən maksimum qiymət alın.
 
-İstifadəçidən maksimum qiymət alın:
-
-```text
 Enter maximum price:
 300
-```
 
-Qiyməti `300` və ya daha aşağı olan kurslar göstərilməlidir.
+Qiyməti 300 AZN və ya daha aşağı olan kursları göstərin.
 
-```text
 ===== COURSES =====
 
 1 | Java Backend | 250 AZN
 2 | C# Backend | 300 AZN
 3 | SQL Fundamentals | 150 AZN
-```
 
----
+## 11.6 UPDATE COURSE
 
-# 21. Update Course
-
-Console:
-
-```text
 Enter course id:
 1
 
@@ -538,46 +433,31 @@ Enter new price:
 
 Enter new duration:
 7
-```
 
-Course-un `Price` və `Duration` property-ləri dəyişdirilməlidir.
+Course-un Price və Duration property-ləri update edilməlidir.
 
 Nəticə:
 
-```text
 Course updated successfully!
-```
 
----
+## 11.7 DELETE COURSE
 
-# 22. Delete Course
-
-Console:
-
-```text
 Enter course id:
 4
-```
 
 Course database-dən silinməlidir.
 
-Əgər həmin kursda tələbələr qeydiyyatdan keçibsə, silinmə zamanı `Enrollment` məlumatlarının necə idarə olunacağını nəzərə alın.
+Əgər həmin kursda tələbələr qeydiyyatdan keçibsə, Enrollment məlumatlarının necə idarə olunacağı nəzərə alınmalıdır.
 
 Nəticə:
 
-```text
 Course deleted successfully!
-```
 
----
+12. ENROLL STUDENT
+    ==================
 
-# 23. Enroll Student
+Tələbənin kursa qeydiyyatdan keçməsini təmin edin.
 
-Sistemin əsas hissəsi tələbənin kursa qeydiyyatdan keçirilməsidir.
-
-Console:
-
-```text
 ===== ENROLL STUDENT =====
 
 Enter student id:
@@ -585,83 +465,62 @@ Enter student id:
 
 Enter course id:
 2
-```
 
-Əvvəlcə tələbənin mövcud olub-olmadığını yoxlayın.
+Əvvəlcə Student-in mövcud olub-olmadığını yoxlayın.
 
-Daha sonra kursun mövcud olub-olmadığını yoxlayın.
+Daha sonra Course-un mövcud olub-olmadığını yoxlayın.
 
-Hər ikisi mövcuddursa `Enrollment` yaradılmalıdır.
+Hər ikisi mövcuddursa Enrollment yaradılmalıdır.
 
-`EnrollmentDate` avtomatik olaraq cari tarixlə doldurulmalıdır.
+EnrollmentDate avtomatik olaraq cari tarixlə doldurulmalıdır.
 
 Nəticə:
 
-```text
 Student enrolled successfully!
-```
 
----
+13. DUPLICATE ENROLLMENT
+    ========================
 
-# 24. Duplicate Enrollment
-
-Bir tələbə eyni kursa ikinci dəfə qeydiyyatdan keçməməlidir.
+Bir tələbə eyni kursa ikinci dəfə qeydiyyatdan keçə bilməz.
 
 Məsələn:
 
-```text
 Student:
 Ali Valiyev
 
 Course:
 Java Backend
-```
 
-əvvəldən qeydiyyatda varsa:
+Əgər artıq qeydiyyat varsa:
 
-```text
 Student is already enrolled in this course!
-```
 
-çıxarılmalıdır.
-
----
-
-# 25. Get All Enrollments
+14. GET ALL ENROLLMENTS
+    =======================
 
 Bütün enrollment məlumatlarını göstərin.
 
-Nəticə:
-
-```text
 ===== ENROLLMENTS =====
 
 1 | Ali Valiyev | Java Backend | 2026-09-01
 2 | Leyla Hasanli | C# Backend | 2026-09-03
 3 | Murad Aliyev | Java Backend | 2026-09-05
 4 | Ali Valiyev | SQL Fundamentals | 2026-09-07
-```
 
-Burada yalnız `StudentId` və `CourseId` göstərilməməlidir.
+Burada yalnız StudentId və CourseId göstərilməməlidir.
 
 Student-in adı və Course-un adı göstərilməlidir.
 
----
+15. GET STUDENT COURSES
+    =======================
 
-# 26. Get Student Courses
+Console-dan Student ID alın.
 
-Console:
-
-```text
 Enter student id:
 1
-```
 
 Həmin tələbənin qeydiyyatda olduğu bütün kursları göstərin.
 
-Nəticə:
-
-```text
 ===== ALI VALIYEV'S COURSES =====
 
 1. Java Backend
@@ -675,57 +534,35 @@ Nəticə:
 3. Docker
    Price: 120 AZN
    Duration: 2 months
-```
 
-Bu əməliyyatda:
+Bu əməliyyatda Student -> Enrollments -> Course əlaqəsindən istifadə edilməlidir.
 
-```text
-Student
-   ↓
-Enrollments
-   ↓
-Course
-```
+16. GET COURSE STUDENTS
+    =======================
 
-əlaqəsindən istifadə olunmalıdır.
+Console-dan Course ID alın.
 
----
-
-# 27. Get Course Students
-
-Console:
-
-```text
 Enter course id:
 1
-```
 
 Həmin kursda qeydiyyatda olan bütün tələbələri göstərin.
 
-Nəticə:
-
-```text
 ===== JAVA BACKEND STUDENTS =====
 
 1. Ali Valiyev
-   ali@gmail.com
+   [ali@gmail.com](mailto:ali@gmail.com)
 
 2. Leyla Hasanli
-   leyla@gmail.com
+   [leyla@gmail.com](mailto:leyla@gmail.com)
 
 3. Murad Aliyev
-   murad@gmail.com
-```
+   [murad@gmail.com](mailto:murad@gmail.com)
 
----
-
-# 28. Remove Student From Course
+4. REMOVE STUDENT FROM COURSE
+   ==============================
 
 Tələbənin kursdan çıxmasını təmin edin.
 
-Console:
-
-```text
 ===== REMOVE ENROLLMENT =====
 
 Enter student id:
@@ -733,162 +570,121 @@ Enter student id:
 
 Enter course id:
 2
-```
 
-Həmin tələbənin həmin kurs üzrə enrollment-u tapılmalıdır.
+Enrollment tapılarsa silinməlidir.
 
-Tapılarsa silinməlidir:
+Nəticə:
 
-```text
 Student removed from course successfully!
-```
 
-Tapılmadıqda:
+Enrollment tapılmadıqda:
 
-```text
 Enrollment not found!
-```
 
----
+18. COURSE STUDENT COUNT
+    ========================
 
-# 29. Course Student Count
+Course ID alın.
 
-Console-dan course ID alın:
-
-```text
 Enter course id:
 1
-```
 
 Həmin kursda neçə tələbənin qeydiyyatda olduğunu göstərin.
 
 Nəticə:
 
-```text
 Course: Java Backend
 Students enrolled: 24
-```
 
----
+19. STUDENT COURSE COUNT
+    ========================
 
-# 30. Student Course Count
+Student ID alın.
 
-Console:
-
-```text
 Enter student id:
 1
-```
 
 Tələbənin neçə kursda qeydiyyatda olduğunu göstərin.
 
 Nəticə:
 
-```text
 Student: Ali Valiyev
 Total courses: 4
-```
 
----
-
-# 31. Most Popular Course
+20. MOST POPULAR COURSE
+    =======================
 
 Database-də ən çox tələbənin qeydiyyatdan keçdiyi kursu tapın.
 
-Nəticə:
-
-```text
 ===== MOST POPULAR COURSE =====
 
 Course: Java Backend
 Students: 38
-```
 
-Əgər iki kursun tələbə sayı eynidirsə, uyğun nəticəni göstərin.
-
----
-
-# 32. Most Active Student
+21. MOST ACTIVE STUDENT
+    =======================
 
 Ən çox kursda qeydiyyatda olan tələbəni tapın.
 
-Nəticə:
-
-```text
 ===== MOST ACTIVE STUDENT =====
 
 Student: Ali Valiyev
 Courses: 7
-```
 
----
-
-# 33. Pagination — Students
+22. STUDENT PAGINATION
+    ======================
 
 Tələbələr üçün pagination yaradın.
 
 Console:
 
-```text
 Enter page size:
 3
 
 Enter page number:
 2
-```
 
-Məsələn:
+Nəticə:
 
-```text
 ===== PAGE 2 =====
 
 4 | Kamran Aliyev
 5 | Nigar Hasanli
 6 | Orxan Karimov
-```
 
-`Skip()` və `Take()` istifadə edin.
+Skip() və Take() istifadə edin.
 
-Məntiq:
+Pagination məntiqi:
 
-```text
 Skip((pageNumber - 1) * pageSize)
 Take(pageSize)
-```
 
----
+23. COURSE PAGINATION
+    =====================
 
-# 34. Pagination — Courses
+Kurslar üçün pagination yaradın.
 
-Kurslar üçün də pagination yaradın.
-
-```text
 Enter page size:
 3
 
 Enter page number:
 2
-```
 
 Nəticə:
 
-```text
 ===== COURSE PAGE 2 =====
 
 4 | Spring Boot
 5 | Docker
 6 | Microservices
-```
 
----
+24. PAGINATION INFORMATION
+    ==========================
 
-# 35. Pagination Information
-
-Pagination zamanı əlavə məlumat da göstərin.
+Pagination zamanı əlavə məlumat göstərin.
 
 Məsələn:
 
-```text
 ===== COURSES =====
 
 Page: 2
@@ -899,44 +695,72 @@ Total Pages: 4
 4 | Spring Boot
 5 | Docker
 6 | Microservices
-```
 
-`Total Pages` hesablanmalıdır.
+Total Pages hesablanmalıdır.
 
 Məsələn:
 
-```text
 Total Courses = 10
 Page Size = 3
 
 Total Pages = 4
-```
 
----
+25. VALIDATION
+    ==============
 
-# 36. Main Menu
+İstifadəçidən alınan məlumatlar yoxlanılmalıdır.
+
+## STUDENT VALIDATION
+
+FullName boş ola bilməz.
+
+Full name cannot be empty!
+
+Email boş ola bilməz.
+
+Email cannot be empty!
+
+Age mənfi və ya 0 ola bilməz.
+
+Age must be greater than 0!
+
+## COURSE VALIDATION
+
+Name boş ola bilməz.
+
+Course name cannot be empty!
+
+Price mənfi ola bilməz.
+
+Price cannot be negative!
+
+Duration 0 və ya mənfi ola bilməz.
+
+Duration must be greater than 0!
+
+26. MAIN MENU
+    =============
 
 Bütün əməliyyatlar əsas menu vasitəsilə idarə olunmalıdır.
 
-```text
 ========================================
-       ONLINE COURSE MANAGEMENT
-========================================
+ONLINE COURSE MANAGEMENT
+========================
 
 STUDENTS
 
-1.  Add Student
-2.  Get All Students
-3.  Get Student By Id
-4.  Search Student
-5.  Update Student
-6.  Delete Student
-7.  Student Pagination
+1. Add Student
+2. Get All Students
+3. Get Student By Id
+4. Search Student
+5. Update Student
+6. Delete Student
+7. Student Pagination
 
 COURSES
 
-8.  Add Course
-9.  Get All Courses
+8. Add Course
+9. Get All Courses
 10. Get Course By Id
 11. Search Course
 12. Filter Courses By Price
@@ -957,94 +781,53 @@ ENROLLMENTS
 REPORTS
 
 23. Most Popular Course
+
 24. Most Active Student
 
-0. Exit
+25. Exit
 
 ========================================
 
 Choose an option:
-```
 
----
+27. EF CORE REQUIREMENTS
+    ========================
 
-# 37. Validation
+Task boyunca əsas database əməliyyatları Entity Framework Core ORM vasitəsilə həyata keçirilməlidir.
 
-İstifadəçidən alınan məlumatlar yoxlanılmalıdır.
+İstifadə olunması gözlənilən əsas EF Core metodları:
 
-### Student
-
-`FullName` boş ola bilməz.
-
-```text
-Full name cannot be empty!
-```
-
-`Email` boş ola bilməz.
-
-```text
-Email cannot be empty!
-```
-
-`Age` mənfi ola bilməz.
-
-```text
-Age must be greater than 0!
-```
-
----
-
-### Course
-
-`Name` boş ola bilməz.
-
-```text
-Course name cannot be empty!
-```
-
-`Price` mənfi ola bilməz.
-
-```text
-Price cannot be negative!
-```
-
-`Duration` `0` və ya mənfi ola bilməz.
-
-```text
-Duration must be greater than 0!
-```
-
----
-
-# 38. EF Core Requirements
-
-Task boyunca əsas database əməliyyatları **Entity Framework Core ORM** vasitəsilə həyata keçirilməlidir.
-
-Aşağıdakılardan istifadə edin:
-
-```text
 DbContext
 DbSet
+
 Add()
 AddAsync()
+
 Find()
 FindAsync()
+
 FirstOrDefault()
 FirstOrDefaultAsync()
+
 ToList()
 ToListAsync()
+
 Where()
 Select()
+
 Include()
 ThenInclude()
+
 Any()
 Count()
+
 OrderBy()
+
 Skip()
 Take()
+
 Remove()
+
 SaveChanges()
 SaveChangesAsync()
-```
-
 
