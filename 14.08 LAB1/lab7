@@ -1,0 +1,973 @@
+# 🛒 SHOPHUB
+
+## C# E-Commerce Management System
+
+> 🎯 **Məqsəd:** Keçdiyiniz C# mövzularının hamısını bir real layihədə birləşdirərək Console Application hazırlamaq.
+
+---
+
+# 📌 LAYİHƏ HAQQINDA
+
+ShopHub sadə bir **online mağaza sistemi** olacaq.
+
+Proqramda:
+
+* 👤 Müştəri yaratmaq
+* 📦 Məhsul əlavə etmək
+* 🔍 Məhsul axtarmaq
+* 🛒 Sifariş yaratmaq
+* ➕ Sifarişə məhsul əlavə etmək
+* 💰 Sifarişin qiymətini hesablamaq
+* 📉 Məhsul stokunu azaltmaq
+* 🗑️ Məhsulu Soft Delete etmək
+* ♻️ Silinmiş məhsulu geri qaytarmaq
+* 📊 LINQ ilə məlumatları analiz etmək
+
+mümkün olmalıdır.
+
+---
+
+# 🗺️ LAYİHƏNİ HANSI SIRA İLƏ YAZMALIYAM?
+
+Layihəni aşağıdakı ardıcıllıqla hazırlayın:
+
+```text
+1️⃣  Models
+       ↓
+2️⃣  Inheritance & Abstract Class
+       ↓
+3️⃣  Customer & Order
+       ↓
+4️⃣  Interfaces
+       ↓
+5️⃣  Services
+       ↓
+6️⃣  Collections
+       ↓
+7️⃣  Search & String Methods
+       ↓
+8️⃣  LINQ
+       ↓
+9️⃣  Exceptions
+       ↓
+🔟  Extension Methods
+       ↓
+1️⃣1️⃣ Generics
+       ↓
+1️⃣2️⃣ Custom Collection
+       ↓
+1️⃣3️⃣ Indexers
+       ↓
+1️⃣4️⃣ Soft Delete
+       ↓
+1️⃣5️⃣ Reflection
+       ↓
+1️⃣6️⃣ Garbage Collection
+       ↓
+1️⃣7️⃣ Console Menu
+```
+
+---
+
+# 1️⃣ PRODUCT CLASS
+
+İlk olaraq əsas `Product` class-ını yaradın.
+
+`Product` **abstract class** olmalıdır.
+
+### Product məlumatları:
+
+```text
+Id
+Name
+Description
+Price
+Stock
+Category
+IsDeleted
+CreatedAt
+```
+
+### Product metodları:
+
+```text
+GetProductInfo()
+CalculateDiscount()
+```
+
+### Məsələn:
+
+```text
+Product
+────────────────────
+Id: 1
+Name: iPhone 16
+Price: 2200 AZN
+Stock: 5
+Category: Phone
+```
+
+---
+
+# 2️⃣ PRODUCT TYPES
+
+`Product` class-ından 2 yeni class yaradın.
+
+```text
+                 Product
+                    │
+          ┌─────────┴─────────┐
+          ↓                   ↓
+ ElectronicProduct     ClothingProduct
+```
+
+## 💻 ElectronicProduct
+
+Əlavə məlumatlar:
+
+```text
+Brand
+WarrantyMonths
+```
+
+Məsələn:
+
+```text
+iPhone 16
+Brand: Apple
+Warranty: 24 months
+```
+
+---
+
+## 👕 ClothingProduct
+
+Əlavə məlumatlar:
+
+```text
+Size
+Material
+Gender
+```
+
+Məsələn:
+
+```text
+Nike T-Shirt
+Size: L
+Material: Cotton
+Gender: Male
+```
+
+### Vacib:
+
+`GetProductInfo()` metodunu child class-larda `override` edin.
+
+---
+
+# 3️⃣ CUSTOMER CLASS
+
+İndi müştəri sistemi yaradın.
+
+`Customer` class:
+
+```text
+Id
+FirstName
+LastName
+Email
+Phone
+IsDeleted
+CreatedAt
+```
+
+Əlavə olaraq:
+
+```text
+FullName
+```
+
+property-si yaradın.
+
+### Nəticə:
+
+```text
+FirstName: Hebib
+LastName: Ramazanov
+
+FullName → Hebib Ramazanov
+```
+
+---
+
+# 4️⃣ ORDER CLASS
+
+İndi müştərinin məhsul sifariş etməsi üçün `Order` yaradın.
+
+### Order:
+
+```text
+Id
+Customer
+Items
+TotalPrice
+Status
+CreatedAt
+IsDeleted
+```
+
+### OrderStatus:
+
+```text
+Pending
+Confirmed
+Shipped
+Delivered
+Cancelled
+```
+
+---
+
+# 5️⃣ ORDER ITEM
+
+Bir sifarişin içində bir və ya daha çox məhsul ola bilər.
+
+Buna görə `OrderItem` class yaradın.
+
+```text
+Product
+Quantity
+UnitPrice
+TotalPrice
+```
+
+### Məsələn:
+
+```text
+ORDER #1
+
+iPhone 16       x1    2200 AZN
+AirPods         x2     600 AZN
+T-Shirt         x2     100 AZN
+──────────────────────────────
+TOTAL                  2900 AZN
+```
+
+---
+
+# 6️⃣ INTERFACES
+
+İndi sistemin əsas əməliyyatlarını interface-lərə ayırın.
+
+## IProductService
+
+Aşağıdakı metodlar olmalıdır:
+
+```text
+AddProduct()
+RemoveProduct()
+RestoreProduct()
+GetProduct()
+GetAllProducts()
+SearchProducts()
+```
+
+---
+
+## IOrderService
+
+```text
+CreateOrder()
+AddProductToOrder()
+RemoveProductFromOrder()
+ConfirmOrder()
+CancelOrder()
+GetOrder()
+GetCustomerOrders()
+```
+
+---
+
+# 7️⃣ SERVICES
+
+Interface-ləri implement edən service class-lar yaradın.
+
+```text
+IProductService
+      ↓
+ProductService
+```
+
+və
+
+```text
+IOrderService
+      ↓
+OrderService
+```
+
+İstəsəniz əlavə olaraq:
+
+```text
+CustomerService
+```
+
+də yarada bilərsiniz.
+
+---
+
+# 8️⃣ COLLECTIONS
+
+İndi məlumatları yaddaşda saxlamaq üçün `List<T>` istifadə edin.
+
+Məsələn:
+
+```csharp
+List<Product> products;
+List<Customer> customers;
+List<Order> orders;
+```
+
+Order daxilində:
+
+```csharp
+List<OrderItem> items;
+```
+
+olmalıdır.
+
+---
+
+# 9️⃣ PRODUCT SEARCH
+
+İstifadəçi məhsul axtara bilməlidir.
+
+Məsələn:
+
+```text
+Search: iphone
+```
+
+Nəticə:
+
+```text
+📱 iPhone 15
+📱 iPhone 15 Pro
+📱 iPhone 16
+```
+
+Axtarış zamanı:
+
+```text
+Contains()
+ToLower()
+Trim()
+StartsWith()
+EndsWith()
+```
+
+kimi String metodlarından istifadə edin.
+
+Axtarış aşağıdakılarda aparıla bilər:
+
+```text
+Name
+Description
+Category
+Brand
+```
+
+---
+
+# 🔟 ref / out
+
+Stock idarəsi üçün `ref` və `out` istifadə edin.
+
+### Məhsul stokundan çıxarma:
+
+```text
+Product
+   ↓
+Requested Quantity
+   ↓
+Stock yoxlanılır
+   ↓
+Kifayətdirsə Stock azalır
+```
+
+Aşağıdakı tipdə metod yaradın:
+
+```csharp
+TryRemoveFromStock(
+    Product product,
+    int quantity,
+    out decimal totalPrice
+)
+```
+
+---
+
+## `ref` istifadə edin
+
+Endirim tətbiq edən metod yaradın:
+
+```csharp
+ApplyDiscount(
+    ref decimal price,
+    decimal percentage
+)
+```
+
+Məsələn:
+
+```text
+Price: 100 AZN
+Discount: 20%
+
+Final Price: 80 AZN
+```
+
+---
+
+# 1️⃣1️⃣ LINQ
+
+İndi sistemdə məlumatları LINQ ilə analiz edin.
+
+Aşağıdakı funksiyaları yaradın:
+
+### 💰 Qiymət
+
+```text
+GetMostExpensiveProduct()
+GetCheapestProduct()
+```
+
+### 📦 Stock
+
+```text
+GetAvailableProducts()
+GetOutOfStockProducts()
+```
+
+### 🏷️ Category
+
+```text
+GetProductsByCategory(category)
+```
+
+### 💵 Price Range
+
+```text
+GetProductsByPrice(min, max)
+```
+
+### 👤 Customer
+
+```text
+GetCustomerOrders(customerId)
+```
+
+### 📊 Sales
+
+```text
+GetBestSellingProduct()
+```
+
+Mümkün qədər bu LINQ metodlarından istifadə edin:
+
+```text
+Where()
+Select()
+OrderBy()
+OrderByDescending()
+FirstOrDefault()
+SingleOrDefault()
+Any()
+All()
+Count()
+Sum()
+Average()
+GroupBy()
+```
+
+---
+
+# 1️⃣2️⃣ EXCEPTION HANDLING
+
+Sistemdə səhvləri idarə edin.
+
+Aşağıdakı custom exception-ları yaradın:
+
+```text
+ProductNotFoundException
+CustomerNotFoundException
+OrderNotFoundException
+OutOfStockException
+InvalidOrderException
+```
+
+### Məsələn:
+
+Məhsul stokunda:
+
+```text
+Stock = 3
+```
+
+Müştəri istəyir:
+
+```text
+Quantity = 10
+```
+
+Nəticə:
+
+```text
+❌ OutOfStockException
+```
+
+`try`, `catch`, `finally` istifadə edin.
+
+---
+
+# 1️⃣3️⃣ EXTENSION METHODS
+
+## StringExtensions
+
+Aşağıdakı extension metodları yaradın:
+
+```text
+IsValidEmail()
+ToTitleCase()
+IsNullOrEmpty()
+```
+
+Məsələn:
+
+```csharp
+email.IsValidEmail();
+```
+
+---
+
+## ProductExtensions
+
+```text
+IsInStock()
+GetFinalPrice()
+IsExpensive()
+```
+
+Məsələn:
+
+```csharp
+product.IsInStock();
+product.GetFinalPrice();
+```
+
+---
+
+# 1️⃣4️⃣ GENERICS
+
+Generic Repository yaradın.
+
+## IRepository<T>
+
+```text
+Add(T entity)
+GetById(int id)
+GetAll()
+Update(T entity)
+Delete(T entity)
+```
+
+Sonra:
+
+```text
+Repository<T>
+```
+
+class-ını yaradın.
+
+İstifadəsi:
+
+```csharp
+Repository<Product>
+Repository<Customer>
+Repository<Order>
+```
+
+şəklində mümkün olmalıdır.
+
+---
+
+# 1️⃣5️⃣ CUSTOM COLLECTION
+
+İndi öz collection class-ınızı yaradın.
+
+```text
+CustomCollection<T>
+```
+
+Bu class daxilində `List<T>` istifadə etmək **qadağandır**.
+
+Array istifadə edin:
+
+```csharp
+T[] _items;
+```
+
+Aşağıdakı metodlar olmalıdır:
+
+```text
+Add()
+Remove()
+Get()
+Contains()
+Clear()
+Count
+```
+
+Array dolduqda onun ölçüsünü özünüz artırmalısınız.
+
+---
+
+# 1️⃣6️⃣ INDEXER
+
+`ProductCollection` yaradın.
+
+Aşağıdakı istifadə mümkün olmalıdır:
+
+```csharp
+products[0]
+```
+
+Bu zaman 0-cı product qaytarılmalıdır.
+
+Əlavə olaraq:
+
+```csharp
+products["iPhone 16"]
+```
+
+yazıldıqda adı uyğun olan product qaytarılmalıdır.
+
+---
+
+# 1️⃣7️⃣ SOFT DELETE
+
+Product-u həqiqətən silməyin.
+
+Məsələn:
+
+```text
+Product:
+iPhone 16
+
+Delete → IsDeleted = true
+```
+
+Yəni:
+
+```csharp
+product.IsDeleted = true;
+```
+
+### Deleted product:
+
+```text
+❌ Search-də görünməməlidir
+❌ Yeni Order-a əlavə edilməməlidir
+❌ Active Products siyahısında görünməməlidir
+```
+
+Amma database/collection daxilində qalmalıdır.
+
+### Lazım olan metodlar:
+
+```text
+DeleteProduct()
+RestoreProduct()
+```
+
+---
+
+# 1️⃣8️⃣ REFLECTION
+
+`ObjectInspector` class yaradın.
+
+Reflection istifadə edərək verilmiş object haqqında məlumat göstərin.
+
+Məsələn:
+
+```text
+════════════════════════════
+🔬 OBJECT INSPECTOR
+════════════════════════════
+
+Class:
+ElectronicProduct
+
+Properties:
+- Id
+- Name
+- Price
+- Stock
+- Brand
+- WarrantyMonths
+
+Methods:
+- GetProductInfo()
+- CalculateDiscount()
+════════════════════════════
+```
+
+İstifadə edin:
+
+```text
+GetType()
+typeof()
+GetProperties()
+GetMethods()
+GetProperty()
+```
+
+---
+
+# 1️⃣9️⃣ GARBAGE COLLECTION
+
+`MemoryTest` class yaradın.
+
+Test üçün çox sayda object yaradın.
+
+Məsələn:
+
+```text
+100,000 OrderItem
+```
+
+Sonra Garbage Collector haqqında məlumat əldə edin.
+
+İstifadə edin:
+
+```text
+GC.GetTotalMemory()
+GC.GetGeneration()
+GC.Collect()
+GC.GetAllocatedBytesForCurrentThread()
+```
+
+GC-dən əvvəl və sonra nəticələri müqayisə edin.
+
+---
+
+# 2️⃣0️⃣ ORDER SİFARİŞ PROSESİ
+
+Bütün sistemin əsas hissəsi **Order Flow** olacaq.
+
+Proses belə işləməlidir:
+
+```text
+👤 Customer
+      │
+      ▼
+🧾 Create Order
+      │
+      ▼
+📦 Add Product
+      │
+      ▼
+🔢 Select Quantity
+      │
+      ▼
+📊 Check Stock
+      │
+      ▼
+💰 Calculate Price
+      │
+      ▼
+📉 Reduce Stock
+      │
+      ▼
+✅ Confirm Order
+      │
+      ▼
+🚚 Shipped
+      │
+      ▼
+🏠 Delivered
+```
+
+---
+
+# 2️⃣1️⃣ CONSOLE MENU
+
+Proqram başladıqda belə bir menyu göstərin:
+
+```text
+╔══════════════════════════════════════════╗
+║                                          ║
+║             🛒 SHOPHUB                   ║
+║        E-Commerce Management             ║
+║                                          ║
+╠══════════════════════════════════════════╣
+║                                          ║
+║  1. 👤 Add Customer                      ║
+║  2. 📦 Add Product                       ║
+║  3. 📋 Show Products                     ║
+║  4. 🔍 Search Product                    ║
+║  5. 📊 Product Statistics                ║
+║                                          ║
+║  6. 🛒 Create Order                      ║
+║  7. ➕ Add Product To Order              ║
+║  8. ➖ Remove Product From Order         ║
+║  9. 🧾 Show Order                        ║
+║ 10. 💰 Calculate Order Total             ║
+║ 11. ✅ Confirm Order                     ║
+║ 12. ❌ Cancel Order                      ║
+║                                          ║
+║ 13. 🗑️ Delete Product                    ║
+║ 14. ♻️ Restore Product                   ║
+║                                          ║
+║ 15. 🔬 Object Inspector                  ║
+║ 16. 🧹 Garbage Collection Test           ║
+║                                          ║
+║  0. 🚪 Exit                              ║
+║                                          ║
+╚══════════════════════════════════════════╝
+
+👉 Seçiminiz:
+```
+
+---
+
+# 2️⃣2️⃣ 📂 PROJECT STRUCTURE
+
+Layihəni mümkün qədər aşağıdakı kimi təşkil edin:
+
+```text
+ShopHub
+│
+├── 📁 Models
+│   ├── Product.cs
+│   ├── ElectronicProduct.cs
+│   ├── ClothingProduct.cs
+│   ├── Customer.cs
+│   ├── Order.cs
+│   └── OrderItem.cs
+│
+├── 📁 Interfaces
+│   ├── IProductService.cs
+│   ├── IOrderService.cs
+│   └── IRepository.cs
+│
+├── 📁 Services
+│   ├── ProductService.cs
+│   ├── OrderService.cs
+│   └── CustomerService.cs
+│
+├── 📁 Collections
+│   ├── CustomCollection.cs
+│   └── ProductCollection.cs
+│
+├── 📁 Exceptions
+│   ├── ProductNotFoundException.cs
+│   ├── CustomerNotFoundException.cs
+│   ├── OrderNotFoundException.cs
+│   ├── OutOfStockException.cs
+│   └── InvalidOrderException.cs
+│
+├── 📁 Extensions
+│   ├── StringExtensions.cs
+│   └── ProductExtensions.cs
+│
+├── 📁 Utilities
+│   ├── ObjectInspector.cs
+│   └── MemoryTest.cs
+│
+└── Program.cs
+```
+
+---
+
+# ☑️ FINAL CHECKLIST
+
+Layihəni təhvil verməzdən əvvəl yoxlayın:
+
+```text
+☐ Product abstract class yaradılıb
+☐ Inheritance istifadə olunub
+☐ Polymorphism istifadə olunub
+☐ Customer yaradılıb
+☐ Order yaradılıb
+☐ OrderItem yaradılıb
+
+☐ Interface-lər yaradılıb
+☐ Service-lər yaradılıb
+
+☐ List<T> istifadə olunub
+☐ String metodları istifadə olunub
+☐ ref / out istifadə olunub
+☐ LINQ istifadə olunub
+
+☐ Custom Exception-lar yaradılıb
+☐ Extension Methods yaradılıb
+☐ Generic Repository yaradılıb
+☐ Custom Collection yaradılıb
+☐ Indexer yaradılıb
+☐ Soft Delete tətbiq olunub
+☐ Reflection istifadə olunub
+☐ Garbage Collection test olunub
+
+☐ Console Menu işləyir
+☐ Order Flow tam işləyir
+☐ Kod səliqəli təşkil olunub
+```
+
+---
+
+# 🏆 BONUS
+
+Əsas layihə tamamlandıqdan sonra əlavə edə bilərsiniz:
+
+```text
+⭐ Product Sorting
+⭐ Discount Code
+⭐ Product Rating
+⭐ Favorite Products
+⭐ Admin / Customer Role
+⭐ JSON File Storage
+⭐ Async Methods
+⭐ Order History
+⭐ Pagination
+```
+
+---
+
+# 🚀 ƏSAS MƏQSƏD
+
+Bu layihədə hər mövzunu ayrıca kod yazmaq üçün yox,
+
+**bir sistemin içində bir-biri ilə əlaqəli şəkildə istifadə etməlisiniz.**
+
+```text
+C# Basics
+    ↓
+OOP
+    ↓
+Collections
+    ↓
+LINQ
+    ↓
+Exceptions
+    ↓
+Generics
+    ↓
+Advanced C#
+    ↓
+        🛒 SHOPHUB
+```
+
+### 🎓 Nəticədə
+
+**C# mövzularını bilən yox, bu mövzularla real layihə qura bilən bir developer kimi düşünmək məqsəddir.**
