@@ -39,3 +39,31 @@ Join sorğuları:
 
 Hər bir pasiyentə ona yazılmış dərmanların siyahısı
 Həkimlərin hansı xəstələrə hansı dərmanları yazdığnı göstər
+
+
+
+Hər bir həkimin keçirdiyi görüşlərin sayını göstərin.
+Hər bir şöbədə çalışan həkimlərin sayını göstərin.
+Heç bir görüş keçirməmiş həkimləri tapın.
+Heç bir həkimlə görüşməmiş pasiyentləri tapın.
+Ən çox görüş keçirən həkimi göstərin.
+Ən çox görüşə gələn pasiyenti göstərin.
+Hər bir həkimin görüşdüyü pasiyentlərin siyahısını göstərin.
+Müəyyən bir şöbədə çalışan həkimlərin hansı pasiyentlərlə görüşdüyünü göstərin.
+Hər bir pasiyentin neçə fərqli həkimlə görüşdüyünü göstərin.
+Hər bir həkimin neçə fərqli pasiyent qəbul etdiyini göstərin.
+Hər bir pasiyent üçün görüş tarixini, həkimin adını və görüş nəticəsini göstərin.
+Bu gün görüşü olan bütün həkimləri və pasiyentləri göstərin.
+Heç bir dərman yazılmamış görüşləri göstərin.
+Ən çox yazılan dərmanı göstərin.
+Hər bir dərmanın neçə pasiyentə yazıldığını göstərin.
+Hər bir həkimin yazdığı dərmanları və həmin dərmanların hansı pasiyentlərə yazıldığını göstərin.
+Bir neçə fərqli həkim tərəfindən müalicə olunmuş pasiyentləri göstərin.
+Bir neçə fərqli şöbədə çalışan həkimləri göstərin.
+Hər bir şöbə üzrə keçirilmiş görüşlərin sayını göstərin.
+Hər bir şöbədə müalicə olunan fərqli pasiyentlərin sayını göstərin.
+Ən çox dərman yazan həkimi göstərin.
+Heç bir dərman yazmayan həkimləri göstərin.
+Bir görüş zamanı 2 və ya daha çox dərman yazılmış görüşləri göstərin.
+Pasiyentin adı, həkimin adı, şöbənin adı və yazılmış dərmanı birlikdə göstərin.
+Hər bir həkimin ən son görüş keçirdiyi pasiyenti və görüş tarixini göstərin.
