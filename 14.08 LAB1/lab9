@@ -1,0 +1,202 @@
+# C# ORM (Entity Framework Core) — Praktika Tapşırıqları
+
+## Task 1 — Entity və DbContext
+
+Vaciblik: Çox vacib
+
+Sadə bir School Management sistemi yarat.
+
+Tələblər:
+
+* Student entity-si yarat:
+
+  * Id
+  * FirstName
+  * LastName
+  * Age
+  * Email
+* SchoolDbContext adlı DbContext yarat.
+* DbSet<Student> əlavə et.
+* SQL Server bağlantısını konfiqurasiya et.
+* Migration yaradaraq verilənlər bazasını formalaşdır.
+
+Öyrəniləcək mövzular: Entity, DbContext, DbSet, Migration.
+
+## Task 2 — CRUD əməliyyatları
+
+Vaciblik: Çox vacib
+
+Student entity-si üzərində CRUD əməliyyatlarını reallaşdır.
+
+Tələblər:
+
+* Create: yeni tələbə əlavə et.
+* Read: bütün tələbələri gətir.
+* Update: tələbənin yaşını dəyiş.
+* Delete: tələbəni sil.
+* Dəyişiklikləri SaveChangesAsync() ilə yadda saxla.
+* Mövcud olmayan tələbəni yeniləməyə və ya silməyə çalışma.
+
+## Task 3 — LINQ Queries
+
+Vaciblik: Çox vacib
+
+Student cədvəli üzərində aşağıdakı sorğuları yaz:
+
+1. Yaşı 18-dən böyük tələbələri gətir.
+2. Tələbələri adına görə A-dan Z-yə sırala.
+3. Ən yaşlı 3 tələbəni tap.
+4. Müəyyən ada sahib tələbəni tap.
+5. Tələbələrin ümumi sayını hesabla.
+6. Yaşı 20-dən 25-ə qədər olan tələbələri gətir.
+7. Email ünvanı müəyyən dəyərlə bitən tələbələri tap.
+
+İstifadə ediləcək metodlar:
+
+* Where()
+* OrderBy()
+* Take()
+* FirstOrDefaultAsync()
+* CountAsync()
+* Select()
+
+## Task 4 — Relationships
+
+Vaciblik: Çox vacib
+
+Universitet sistemi yarat.
+
+Entity-lər:
+
+Department:
+
+* Id
+* Name
+
+Student:
+
+* Id
+* FullName
+* DepartmentId
+
+Course:
+
+* Id
+* Name
+
+Tələblər:
+
+* Bir Department-da çoxlu Student olsun (One-to-Many).
+* Hər Student bir Department-a aid olsun.
+* Student ilə Course arasında Many-to-Many əlaqəsi qur.
+* Foreign Key-ləri düzgün təyin et.
+* Migration yaradaraq bazaya tətbiq et.
+
+## Task 5 — Loading Strategies
+
+Vaciblik: Normal
+
+Department və Student əlaqəsi üzərində üç üsulu tətbiq et:
+
+1. Eager Loading — Include()
+2. Explicit Loading — LoadAsync()
+3. Lazy Loading — lazımi konfiqurasiya ilə navigasiya property-lərindən istifadə.
+
+Hər üsulla şöbənin tələbələrini gətir və aralarındakı fərqləri izah et.
+
+## Task 6 — DTO və Projection
+
+Vaciblik: Çox vacib
+
+StudentDto adlı DTO yarat.
+
+Property-lər:
+
+* FullName
+* Age
+* DepartmentName
+
+Tələblər:
+
+* Entity-ni birbaşa API-dən qaytarma.
+* LINQ Select() vasitəsilə DTO-ya proyeksiya et.
+* Lazımsız sütunların bazadan gətirilməsinin qarşısını al.
+* Sorğunu ToListAsync() ilə tamamla.
+
+## Task 7 — Tracking və No-Tracking
+
+Vaciblik: Normal
+
+Eyni sorğunu iki üsulla icra et:
+
+* AsTracking()
+* AsNoTracking()
+
+Tələblər:
+
+* Tələbəni bazadan gətir.
+* Adını dəyiş.
+* SaveChangesAsync() çağır.
+* Hər iki üsulda nəticəni yoxla.
+* AsNoTracking() metodunun oxuma əməliyyatlarında nə üçün faydalı ola biləcəyini izah et.
+
+## Task 8 — Filtering, Pagination və Sorting
+
+Vaciblik: Çox vacib
+
+Student siyahısı üçün səhifələmə sistemi yarat.
+
+Tələblər:
+
+* İstifadəçi səhifə nömrəsini və səhifədəki element sayını müəyyən etsin.
+* Skip() və Take() metodlarından istifadə et.
+* Nəticələri ada və yaşa görə sıralamaq mümkün olsun.
+* Müəyyən yaş aralığına görə filtr tətbiq et.
+* Ümumi tələbə sayını və səhifələrin sayını hesabla.
+
+## Task 9 — Fluent API və Data Annotations
+
+Vaciblik: Normal
+
+Student entity-si üçün məhdudiyyətlər təyin et.
+
+Tələblər:
+
+* FirstName maksimum 50 simvol olsun.
+* Email unikal olsun.
+* Age mənfi ola bilməsin.
+* Məcburi sahələri Required ilə müəyyən et.
+* Məhdudiyyətlərin bir hissəsini Data Annotations, digər hissəsini Fluent API ilə qur.
+* İki yanaşmanın fərqini izah et.
+
+## Task 10 — Mini Project: Library Management System
+
+Vaciblik: Çox vacib
+
+Entity Framework Core istifadə edərək kitabxana idarəetmə sistemi yarat.
+
+Entity-lər:
+
+* Book: Id, Title, ISBN, PublishedYear
+* Author: Id, FullName
+* Member: Id, FullName, Email
+* BorrowRecord: Id, BookId, MemberId, BorrowDate, ReturnDate
+
+Tələblər:
+
+* Entity-lər arasında uyğun əlaqələri qur.
+* Kitab əlavə et, yenilə, sil və siyahıya al.
+* Müəllifə görə kitabları tap.
+* Kitab götürmə və qaytarma əməliyyatlarını reallaşdır.
+* Qaytarılmamış kitabları tap.
+* LINQ vasitəsilə ən çox götürülən kitabı müəyyən et.
+* Migration yaradaraq bazanı qur.
+* Asinxron EF Core metodlarından istifadə et.
+
+## İş qaydası
+
+1. Hər tapşırığı əvvəlcə özün həll et.
+2. Hazır həllə baxmadan kod yazmağa çalış.
+3. Hər əməliyyatı ayrıca test et.
+4. Migration və verilənlər bazası dəyişikliklərini yoxla.
+5. Kodun necə işlədiyini öz sözlərinlə izah et.
