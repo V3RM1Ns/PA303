@@ -1,0 +1,374 @@
+# Advanced ORM Task — Banking Core System
+
+## 1. Yaradılmalı olan Entity-lər
+
+### `Customer`
+- `Id`
+- `FullName`
+- `FinCode`
+- `Email`
+- `PhoneNumber`
+- `CreatedAt`
+- `IsActive`
+
+### `BankAccount`
+- `Id`
+- `CustomerId`
+- `AccountNumber`
+- `Currency`
+- `Balance`
+- `Status`
+- `CreatedAt`
+- `RowVersion`
+
+`Status`:
+- `Active`
+- `Frozen`
+- `Closed`
+
+### `BankCard`
+- `Id`
+- `BankAccountId`
+- `CardNumberMasked`
+- `ExpiryDate`
+- `Status`
+- `DailyWithdrawalLimit`
+
+Kartın həssas məlumatlarını real layihədə plaintext şəklində saxlamaq olmaz. Bu taskda yalnız maskalanmış kart nömrəsi saxlanılmalıdır.
+
+### `Transaction`
+- `Id`
+- `ReferenceNumber`
+- `SourceAccountId`
+- `DestinationAccountId`
+- `Amount`
+- `Fee`
+- `Currency`
+- `Status`
+- `Type`
+- `CreatedAt`
+- `CompletedAt`
+- `IdempotencyKey`
+
+`Type`:
+- `Transfer`
+- `Deposit`
+- `Withdrawal`
+
+`Status`:
+- `Pending`
+- `Completed`
+- `Failed`
+- `Reversed`
+
+### `LedgerEntry`
+- `Id`
+- `TransactionId`
+- `AccountId`
+- `EntryType`
+- `Amount`
+- `BalanceAfter`
+- `CreatedAt`
+
+`EntryType`:
+- `Debit`
+- `Credit`
+
+Ledger bank hesabının balansında baş verən dəyişikliklərin dəyişdirilməyən tarixçəsi rolunu oynayır.
+
+### `TransferLimit`
+- `Id`
+- `CustomerId`
+- `DailyLimit`
+- `SingleTransactionLimit`
+- `Currency`
+
+### `AuditLog`
+- `Id`
+- `ActorId`
+- `Action`
+- `EntityName`
+- `EntityId`
+- `CreatedAt`
+- `Details`
+
+Bütün entity-lər üçün uyğun `ToString()` metodlarını override et.
+
+## 2. Entity əlaqələri
+
+- Bir müştərinin bir neçə bank hesabı ola bilər.
+- Bir bank hesabının bir neçə kartı ola bilər.
+- Bir hesab çoxlu pul əməliyyatında göndərən və ya qəbul edən tərəf ola bilər.
+- Bir transaction bir neçə ledger entry yarada bilər.
+- Bir müştərinin transfer limitləri ola bilər.
+- Audit log qeydləri müvafiq əməliyyatlarla əlaqələndirilə bilər.
+
+Bütün əlaqələri EF Core Fluent API ilə qur.
+
+Özün müəyyən et:
+- Hansı əlaqələrdə `Restrict` istifadə edilməlidir.
+- Hansı entity-lərin fiziki silinməsi qadağan edilməlidir.
+- Hansı sahələr üçün unique constraint lazımdır.
+
+## 3. Database və EF Core
+
+- `AppDbContext` yarat.
+- Connection string-i `appsettings.json` daxilində saxla.
+- Migration yarat və database-i yenilə.
+- `AccountNumber`, `ReferenceNumber` və `IdempotencyKey` üçün uyğun unikal indekslər qur.
+- Pul məbləğləri üçün `decimal` və uyğun precision istifadə et.
+- Balansın mənfi olmaması üçün database səviyyəsində constraint əlavə et.
+- `RowVersion` və ya database-in dəstəklədiyi uyğun concurrency mexanizmini konfiqurasiya et.
+- Tarix və status sahələri üçün faydalı indekslər müəyyən et.
+
+## 4. `ICustomerService`
+
+Async CRUD metodları yarat:
+
+- Müştəri yaratmaq
+- Bütün müştəriləri göstərmək
+- ID-yə görə müştəri tapmaq
+- Müştəri məlumatlarını yeniləmək
+- Müştərini deaktiv etmək
+
+Əlavə metodlar:
+- Müştərinin bütün hesablarını göstərmək.
+- Müştərinin ümumi balansını valyuta üzrə hesablamaq.
+- Müştərinin son əməliyyatlarını tarixə görə göstərmək.
+- Şübhəli sayda uğursuz əməliyyatı olan hesabları araşdırma üçün müəyyən etmək.
+
+Eyni `FinCode` və email ilə təkrar müştəri yaradılmasının qarşısını al.
+
+## 5. `IBankAccountService`
+
+Metodlar:
+- Bank hesabı yaratmaq.
+- Hesab məlumatlarını göstərmək.
+- Hesabı dondurmaq.
+- Dondurulmuş hesabı aktivləşdirmək.
+- Hesabı bağlamaq.
+- Hesabın balansını göstərmək.
+
+Qaydalar:
+- Yeni hesabın balansı sıfırdan başlamalıdır.
+- Dondurulmuş hesabdan pul göndərmək və çıxarmaq mümkün olmamalıdır.
+- Bağlanmış hesabda aktiv əməliyyat aparılmamalıdır.
+- Balansı sıfır olmayan hesab bağlana bilməz.
+- Hesabın statusu dəyişəndə `AuditLog` yaradılmalıdır.
+
+Balansın dəyişdirilməsi üçün ümumi setter və ya istifadəçinin birbaşa balans təyin edə bildiyi metod yaratma. Balans yalnız təsdiqlənmiş maliyyə əməliyyatları vasitəsilə dəyişməlidir.
+
+## 6. `ITransactionService`
+
+### A. Pul yatırmaq
+
+Metod hesab ID-si, məbləğ və idempotency key qəbul etməlidir.
+
+Yoxlanılmalıdır:
+- Hesab mövcud və aktiv olmalıdır.
+- Məbləğ sıfırdan böyük olmalıdır.
+- Valyuta hesabın valyutasına uyğun olmalıdır.
+- Eyni sorğu təkrar göndərilərsə, pul ikinci dəfə əlavə edilməməlidir.
+
+Uğurlu əməliyyatda:
+- Transaction yaradılmalıdır.
+- Balans artırılmalıdır.
+- Ledger entry yaradılmalıdır.
+- Audit log yazılmalıdır.
+
+Bütün əlaqəli dəyişikliklər bir transaction daxilində icra edilməlidir.
+
+### B. Pul çıxarmaq
+
+Metod hesab ID-si, məbləğ və idempotency key qəbul etməlidir.
+
+Yoxlanılmalıdır:
+- Hesab aktiv olmalıdır.
+- Məbləğ müsbət olmalıdır.
+- Balans çıxarılacaq məbləğdən az olmamalıdır.
+- Gündəlik çıxarış limiti aşılmamalıdır.
+- Eyni idempotency key ikinci maliyyə əməliyyatı yaratmamalıdır.
+
+Əməliyyat uğurlu olduqda balans azaldılmalı və ledger entry yaradılmalıdır.
+
+### C. Hesablararası köçürmə
+
+Metodlar aşağıdakı məlumatları qəbul etməlidir:
+- Göndərən hesab ID-si
+- Qəbul edən hesab ID-si
+- Məbləğ
+- Idempotency key
+
+Yoxlanılmalıdır:
+- Hər iki hesab mövcud olmalıdır.
+- Hər iki hesab aktiv olmalıdır.
+- Göndərən və qəbul edən hesab eyni olmamalıdır.
+- Hesabların valyutaları uyğun olmalıdır.
+- Göndərənin balansı məbləğ və komissiyanı ödəməyə kifayət etməlidir.
+- Tək əməliyyat və gündəlik limitlər aşılmamalıdır.
+
+Uğurlu köçürmədə:
+1. Transaction yaradılır.
+2. Göndərənin balansı azaldılır.
+3. Qəbul edənin balansı artırılır.
+4. Göndərən üçün `Debit` ledger entry yaradılır.
+5. Qəbul edən üçün `Credit` ledger entry yaradılır.
+6. Transaction `Completed` statusuna keçirilir.
+7. Audit log yaradılır.
+
+**Vacib:** Əməliyyatın istənilən mərhələsi uğursuz olarsa, balansların yalnız birinin dəyişdirilməsi baş verməməlidir.
+
+## 7. `ILedgerService`
+
+Metodlar:
+- Hesabın bütün ledger entry-lərini göstərmək.
+- Tarix aralığına görə ledger entry-ləri filtrləmək.
+- Hesabın tarixçə əsasında balansını hesablamaq.
+- Transaction-a aid bütün ledger entry-ləri göstərmək.
+- Ledger və cari balans arasında uyğunsuzluğu aşkarlamaq.
+
+Ledger entry-lər adi qaydada yenilənməməli və silinməməlidir.
+
+Səhv maliyyə əməliyyatı düzəldiləndə köhnə qeydi silmək əvəzinə əks əməliyyat (reversal) yarat.
+
+## 8. `ITransferLimitService`
+
+Metodlar:
+- Müştəri üçün limit yaratmaq.
+- Limitləri yeniləmək.
+- Tək əməliyyat limitini yoxlamaq.
+- Gündəlik köçürmə məbləğini hesablamaq.
+- Günlük limitin qalan hissəsini göstərmək.
+
+Gündəlik limit yoxlanarkən eyni anda bir neçə köçürmənin limiti aşması problemini nəzərə al.
+
+Limit hesablanarkən yalnız uyğun statuslu və uyğun tarixdə olan əməliyyatlar nəzərə alınmalıdır.
+
+## 9. Custom Exception-lar
+
+Aşağıdakı exception-ları yarat:
+
+- `AccountNotFoundException`
+- `AccountFrozenException`
+- `AccountClosedException`
+- `InsufficientBalanceException`
+- `InvalidTransactionAmountException`
+- `TransferLimitExceededException`
+- `CurrencyMismatchException`
+- `DuplicateIdempotencyKeyException`
+- `ConcurrencyConflictException`
+- `TransactionNotFoundException`
+
+Uyğun hallarda exception-ları servislərdə at və `Program.cs` daxilində handle et.
+
+Təkrar göndərilmiş idempotency key üçün yalnız exception atmaq məcburi deyil. Eyni sorğuya əvvəlki əməliyyatın nəticəsini qaytarmaq variantını da implement et.
+
+## 10. Filter və hesabat metodları
+
+### `IBankAccountService`
+1. Ən yüksək balanslı hesabları göstər.
+2. Dondurulmuş hesabları göstər.
+3. Heç bir əməliyyat aparılmayan hesabları göstər.
+4. Müştərinin bütün hesablarını valyutaya görə qruplaşdır.
+
+### `ITransactionService`
+1. Günlük köçürmə həcmini hesabla.
+2. Ən çox əməliyyat aparan müştəriləri göstər.
+3. Uğursuz əməliyyatları səbəblərinə görə qruplaşdır.
+4. Ən yüksək məbləğli əməliyyatları göstər.
+5. Müəyyən tarix aralığında komissiya gəlirini hesabla.
+6. Eyni hesablar arasında təkrar və ya şübhəli əməliyyat nümunələrini müəyyən et.
+
+### `ILedgerService`
+1. Hər hesab üzrə debit və kredit cəmini hesabla.
+2. Balansla ledger arasında uyğunsuzluğu göstər.
+3. Müəyyən tarixdə hesabın balansını tarixçə əsasında hesabla.
+
+Hesabatları mümkün qədər SQL-ə çevrilə bilən LINQ sorğuları ilə yaz.
+
+## 11. İstifadəçi inputları
+
+`Program.cs` daxilində menyu yarat:
+
+1. Müştəri yaratmaq
+2. Bank hesabı yaratmaq
+3. Hesabın balansını göstərmək
+4. Pul yatırmaq
+5. Pul çıxarmaq
+6. Hesablararası köçürmə
+7. Hesab tarixçəsini göstərmək
+8. Hesabı dondurmaq
+9. Hesabı aktivləşdirmək
+10. Transfer limitlərini göstərmək
+11. Maliyyə hesabatları
+12. Ledger audit
+0. Çıxış
+
+Input qaydaları:
+- Yanlış ID daxil edildikdə yenidən soruş.
+- Məbləğləri `decimal.TryParse()` ilə yoxla.
+- Məbləğlərdə iki onluq rəqəmdən artıq hissəyə icazə verilməməsini və ya yuvarlaqlaşdırma qaydasını müəyyən et.
+- Valyuta və hesab statuslarını düzgün yoxla.
+- Köçürmə zamanı hər iki hesabın məlumatlarını göstər.
+- Hər əməliyyatın reference nömrəsini istifadəçiyə təqdim et.
+
+## 12. Əlavə çətinliklər
+
+### A. Concurrency
+
+İki sorğu eyni hesabdan eyni anda pul çıxarmağa çalışarsa, balans mənfi olmamalıdır.
+
+EF Core optimistic concurrency, `RowVersion`, transaction isolation və atomik database update üsullarını araşdır.
+
+### B. Idempotency
+
+Müştəri internet problemi səbəbindən eyni köçürmə sorğusunu beş dəfə göndərərsə, yalnız bir maliyyə əməliyyatı baş verməlidir.
+
+Bunu yalnız C# kodunda yoxlamaqla kifayətlənmə. Database səviyyəsində unikal məhdudiyyət qur.
+
+### C. Reversal
+
+Tamamlanmış köçürməni birbaşa silmək və ya köhnə transaction-ı dəyişdirmək olmaz.
+
+Əks əməliyyat yarat:
+- Orijinal əməliyyata istinad etməlidir.
+- Eyni əməliyyat ikinci dəfə geri çevrilə bilməməlidir.
+- Hər iki hesabın balansı atomik şəkildə düzəldilməlidir.
+
+### D. Audit və reconciliation
+
+Periodik yoxlama metodu yarat:
+- Ledger üzrə gözlənilən balansı hesabla.
+- Cari balansla müqayisə et.
+- Uyğunsuzluqları hesabat kimi qaytar.
+- Audit qeydlərini silmədən saxla.
+
+### E. Pagination
+
+Əməliyyat tarixçəsi üçün `pageNumber`, `pageSize`, tarix aralığı və status filterləri əlavə et.
+
+### F. Testlər
+
+Aşağıdakı halları yoxlayan avtomatlaşdırılmış testlər yaz:
+- Balansdan artıq pul çıxarmaq.
+- Eyni köçürmə sorğusunu təkrar göndərmək.
+- Dondurulmuş hesabdan pul göndərmək.
+- Uğursuz köçürmədən sonra balansların dəyişməməsi.
+- Paralel sorğularda balansın qorunması.
+- Eyni əməliyyatı iki dəfə geri çevirməyə cəhd etmək.
+
+## Texniki tələblər
+
+- C#
+- Entity Framework Core
+- SQL Server və ya PostgreSQL
+- Async/Await
+- LINQ
+- Dependency Injection
+- Fluent API
+- Database Transactions
+- Concurrency Control
+- Custom Exceptions
+- Unit və integration testləri
+
+Repository pattern məcburi deyil. Maliyyə əməliyyatlarının business logic-i servislərdə saxlanılmalıdır.
