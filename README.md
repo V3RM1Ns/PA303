@@ -1,6 +1,6 @@
 # JavaScript — Alqoritm Tapşırıqları
 
-JavaScript əsaslarını möhkəmləndirmək, alqoritmik düşünmə qabiliyyətini inkişaf etdirmək və praktiki proqramlaşdırma bacarıqları qazanmaq üçün hazırlanmış 37 tapşırıq.
+JavaScript əsaslarını möhkəmləndirmək, alqoritmik düşünmə qabiliyyətini inkişaf etdirmək və praktiki proqramlaşdırma bacarıqları qazanmaq üçün hazırlanmış 67 tapşırıq.
 
 ## 📚 Öyrənmə Mənbələri
 
@@ -69,7 +69,7 @@ Məsələn: `5832 → 5`
 
 ---
 
-## 🟡 ORTA — 10 SUAL
+## 🟡 ORTA — 40 SUAL
 
 **18.** Verilmiş `n` ədədinin rəqəmləri cəmini tapın.
 
@@ -162,11 +162,143 @@ Nəticə:
 [40, 30, 20, 10]
 ```
 
+**28.** Verilmiş `n` ədədinin mükəmməl ədəd (özündən başqa bölənlərinin cəmi özünə bərabər olan ədəd) olub-olmadığını yoxlayın.
+
+Məsələn: `28` → `true` (`1 + 2 + 4 + 7 + 14 = 28`)
+
+**29.** Verilmiş `n` ədədinin Armstronq ədədi olub-olmadığını yoxlayın (rəqəmlərinin kubları cəmi özünə bərabər olan 3 rəqəmli ədəd).
+
+Məsələn: `153` → `true` (`1³ + 5³ + 3³ = 153`)
+
+**30.** Verilmiş `n` ədədinin faktorialını (`n!`) hesablayan function yazın.
+
+Məsələn: `5` → `120`
+
+**31.** `n` sayda elementdən ibarət Fibonaççi ardıcıllığını array şəklində qaytaran function yazın.
+
+Məsələn: `6` → `[0, 1, 1, 2, 3, 5]`
+
+**32.** Verilmiş iki tam ədədin ƏBOB-unu (Ən Böyük Ortaq Bölən) tapın.
+
+Məsələn: `12` və `18` → `6`
+
+**33.** Verilmiş iki tam ədədin ƏKOB-unu (Ən Kiçik Ortaq Bölünən) tapın.
+
+Məsələn: `12` və `18` → `36`
+
+**34.** Verilmiş `n` ədədinin ikilik (binary) say sistemindəki qarşılığını string olaraq qaytaran function yazın (hazır `.toString(2)` istifadə etmədən).
+
+Məsələn: `10` → `"1010"`
+
+**35.** Verilmiş `n` ədədinin rəqəmləri içərisində ən böyük rəqəmi tapın.
+
+Məsələn: `49271` → `9`
+
+**36.** Verilmiş `n` ədədinin rəqəmlərini tərsinə çevirib yeni ədəd kimi qaytaran function yazın (string metodları istifadə etmədən).
+
+Məsələn: `1234` → `4321`
+
+**37.** Verilmiş `n` və `m` (`n < m`) aralığındakı bütün sadə ədədləri array şəklində qaytarın.
+
+Məsələn: `10, 20` → `[11, 13, 17, 19]`
+
+**38.** Verilmiş array-dəki bütün elementləri `k` addım sağa sürüşdürən (rotate) function yazın.
+
+Məsələn: `[1, 2, 3, 4, 5], k = 2` → `[4, 5, 1, 2, 3]`
+
+**39.** Verilmiş array-dəki bütün `0`-ları elementlərin sırasını pozmadan array-in sonuna yığın.
+
+Məsələn: `[0, 1, 0, 3, 12]` → `[1, 3, 12, 0, 0]`
+
+**40.** `1`-dən `N`-ə qədər ədədlərdən ibarət olan, lakin bir ədədi əskik olan array-də çatışmayan ədədi tapın.
+
+Məsələn: `[1, 2, 4, 5, 6]` → `3`
+
+**41.** Verilmiş array-in artan sıra ilə düzülüb-düzülmədiyini (`true` və ya `false`) yoxlayan function yazın.
+
+Məsələn: `[1, 3, 5, 8]` → `true`, `[1, 5, 3, 8]` → `false`
+
+**42.** İki sıralanmış (sorted) array-i tək bir sıralanmış array halında birləşdirin (`.sort()` istifadə etmədən).
+
+Məsələn: `[1, 3, 5]` və `[2, 4, 6]` → `[1, 2, 3, 4, 5, 6]`
+
+**43.** Verilmiş array-i tək və cüt ədədlərdən ibarət iki ayrı array-ə bölüb object şəklində qaytarın.
+
+Məsələn: `[1, 2, 3, 4, 5, 6]` → `{ even: [2, 4, 6], odd: [1, 3, 5] }`
+
+**44.** Verilmiş array-də yalnız bir dəfə rast gəlinən (təkrarlanmayan) elementlərdən ibarət yeni array yaradın.
+
+Məsələn: `[4, 5, 1, 2, 1, 4, 3]` → `[5, 2, 3]`
+
+**45.** Verilmiş array-dəki elementlərin ədədi ortasını tapın və ortalamadan böyük olan elementləri yeni array-də qaytarın.
+
+Məsələn: `[10, 20, 30, 40, 50]` → `[40, 50]`
+
+**46.** İki array-in bir-birinə tam bərabər olub-olmadığını (eyni uzunluqda və eyni indeksdə eyni elementlər) yoxlayan function yazın.
+
+Məsələn: `[1, 2, 3]` və `[1, 2, 3]` → `true`
+
+**47.** Verilmiş array-dəki bütün mənfi ədədləri əvvələ, müsbət ədədləri isə sona yığan function yazın.
+
+Məsələn: `[3, -2, 5, -7, 1, -4]` → `[-2, -7, -4, 3, 5, 1]`
+
+**48.** Verilmiş string-dəki sait hərflərin (`a, e, i, o, u, ə, ö, ü, ı`) sayını hesablayan function yazın.
+
+Məsələn: `"JavaScript"` → `3`
+
+**49.** Verilmiş cümlədəki sözlərin sayını tapın (artıq boşluqları nəzərə almadan).
+
+Məsələn: `"  Salam   dünya  necəsən  "` → `3`
+
+**50.** Verilmiş string-də hər bir simvolun neçə dəfə işləndiyini object şəklində qaytarın.
+
+Məsələn: `"alma"` → `{ a: 2, l: 1, m: 1 }`
+
+**51.** Verilmiş cümlədəki ən uzun sözü tapan function yazın.
+
+Məsələn: `"JavaScript öyrənmək çox maraqlıdır"` → `"JavaScript"`
+
+**52.** Verilmiş iki string-in bir-birinin anaqramı olub-olmadığını yoxlayın (eyni hərflərdən fərqli ardıcıllıqla düzülüb-düzülməməsi).
+
+Məsələn: `"listen"` və `"silent"` → `true`
+
+**53.** Verilmiş cümlədəki hər bir sözün ilk hərfini böyük hərfə çevirən function yazın.
+
+Məsələn: `"salam dünya"` → `"Salam Dünya"`
+
+**54.** String-lərdən ibarət array-də verilmiş `search` sözünün neçə dəfə keçdiyini tapın (böyük-kiçik hərf fərqinə baxmadan).
+
+Məsələn: `["Alma", "armud", "ALMA", "banan"], "alma"` → `2`
+
+**55.** `users` array-indən yaşı `18`-dən böyük olan istifadəçilərin yalnız adlarından (`name`) ibarət yeni array yaradın.
+
+```javascript
+let users = [
+    { name: "Kamran", age: 17 },
+    { name: "Aysel", age: 22 },
+    { name: "Rəşad", age: 19 }
+];
+// Nəticə: ["Aysel", "Rəşad"]
+```
+
+**56.** Verilmiş `products` array-indəki bütün məhsulların qiymətinə 18% ƏDV əlavə edərək yeni array qaytaran function yazın (orijinal array dəyişməməlidir).
+
+**57.** Verilmiş `employees` array-indəki işçiləri şöbələrinə (`department`) görə qruplaşdıran function yazın.
+
+```javascript
+let employees = [
+    { name: "Elvin", department: "IT" },
+    { name: "Günay", department: "HR" },
+    { name: "Tural", department: "IT" }
+];
+// Nəticə: { IT: ["Elvin", "Tural"], HR: ["Günay"] }
+```
+
 ---
 
 ## 🔴 ÇƏTİN — 10 SUAL
 
-**28.** Verilmiş array-də ən çox təkrarlanan elementi tapın.
+**58.** Verilmiş array-də ən çox təkrarlanan elementi tapın.
 
 ```javascript
 [3, 5, 3, 2, 5, 3, 7, 5, 3]
@@ -174,7 +306,7 @@ Nəticə:
 
 Nəticə: `3`
 
-**29.** Verilmiş array-i iki hissəyə bölün.
+**59.** Verilmiş array-i iki hissəyə bölün.
 
 Məsələn:
 
@@ -189,7 +321,7 @@ Nəticə:
 [40, 50, 60]
 ```
 
-**30.** Verilmiş iki array-də ortaq elementləri tapın.
+**60.** Verilmiş iki array-də ortaq elementləri tapın.
 
 ```javascript
 let a = [1, 2, 3, 4, 5];
@@ -202,7 +334,7 @@ Nəticə:
 [3, 5]
 ```
 
-**31.** Verilmiş array-də elementlərin neçə dəfə təkrarlandığını göstərin.
+**61.** Verilmiş array-də elementlərin neçə dəfə təkrarlandığını göstərin.
 
 ```javascript
 [2, 3, 2, 5, 3, 2]
@@ -216,7 +348,7 @@ Nəticə:
 5 → 1 dəfə
 ```
 
-**32.** Verilmiş array-də ardıcıl gələn eyni elementləri tapın.
+**62.** Verilmiş array-də ardıcıl gələn eyni elementləri tapın.
 
 ```javascript
 [1, 2, 2, 3, 4, 4, 4, 5]
@@ -229,7 +361,7 @@ Nəticə:
 4
 ```
 
-**33.** `students` array-i verilib:
+**63.** `students` array-i verilib:
 
 ```javascript
 let students = [
@@ -242,7 +374,7 @@ let students = [
 
 Ən yüksək `grade` olan student object-i tapın.
 
-**34.** `products` array-i verilib:
+**64.** `products` array-i verilib:
 
 ```javascript
 let products = [
@@ -264,7 +396,7 @@ Nəticə:
 ]
 ```
 
-**35.** Verilmiş array-də ən uzun ardıcıl artan hissənin uzunluğunu tapın.
+**65.** Verilmiş array-də ən uzun ardıcıl artan hissənin uzunluğunu tapın.
 
 Məsələn:
 
@@ -276,7 +408,7 @@ Məsələn:
 
 Nəticə: `4`
 
-**36.** Bir function yazın. Function array qəbul etsin və array-dəki elementlərin yerini dəyişmədən, hər elementin neçə dəfə olduğunu object şəklində `return` etsin.
+**66.** Bir function yazın. Function array qəbul etsin və array-dəki elementlərin yerini dəyişmədən, hər elementin neçə dəfə olduğunu object şəklində `return` etsin.
 
 Məsələn:
 
@@ -294,7 +426,7 @@ Nəticə:
 }
 ```
 
-**37. MINI CHALLENGE — SHOPPING CART**
+**67. MINI CHALLENGE — SHOPPING CART**
 
 Aşağıdakı `cart` array-i verilib:
 
@@ -313,23 +445,4 @@ Bir və ya bir neçə function istifadə edərək aşağıdakı əməliyyatları
 2. Məhsulların ümumi qiymətini hesablayın (`price × quantity`).
 3. Ən bahalı məhsulu tapın.
 4. `quantity >= 2` olan məhsullardan yeni array yaradın.
-5. Qiyməti 100-dən böyük olan məhsulların adlarını göstərin.
-
-Qiymətin hesablanması:
-
-```text
-Mouse     → 50 × 2
-Keyboard  → 100 × 1
-Headset   → 150 × 2
-Mousepad  → 30 × 3
-```
-
----
-
-## 📌 QEYD
-
-- Hər tapşırıq ayrıca həll edilməlidir.
-- Kodlar JavaScript dilində yazılmalıdır.
-- Tapşırıqlarda keçilmiş `if/else`, `switch`, `for`, `while`, array, object və function mövzularından istifadə edilməlidir.
-- Kodun oxunaqlı və səliqəli yazılmasına diqqət yetirin.
-- Hazır kodlardan istifadə etmədən tapşırıqları müstəqil həll etməyə çalışın.
+5. Qiyməti 100-dən böyük olan məhsulların ad
