@@ -1,448 +1,506 @@
-# JavaScript — Alqoritm Tapşırıqları
 
-JavaScript əsaslarını möhkəmləndirmək, alqoritmik düşünmə qabiliyyətini inkişaf etdirmək və praktiki proqramlaşdırma bacarıqları qazanmaq üçün hazırlanmış 67 tapşırıq.
+# 🔢 PART 01 — MATH CHALLENGES
 
-## 📚 Öyrənmə Mənbələri
+<sub>5 TASKS · HARD LEVEL · MATHEMATICAL LOGIC</sub>
 
-1. [JavaScript.info](https://javascript.info/)
-2. [MDN — JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-3. [W3Schools — Scope](https://www.w3schools.com/js/js_scope.asp)
-4. [GeeksforGeeks — Global and Local Variables](https://www.geeksforgeeks.org/global-and-local-variables-in-javascript/)
-5. [W3Schools — Functions](https://www.w3schools.com/js/js_functions.asp)
-6. [MDN — Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions)
-7. [W3Schools — Objects](https://www.w3schools.com/js/js_objects.asp)
-8. [MDN — Working with Objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects)
-9. [MDN — Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)
+JavaScript `Math` obyektinin metodlarından istifadə edərək riyazi problemləri həll et.
+
+### TASK 01 — Random Number Generator
+
+**Goal:** Verilmiş aralıqda təsadüfi ədədlər yaradan sistem hazırla.
+
+**Requirements:**
+- Minimum və maksimum qiymət qəbul et.
+- Hər iki sərhəd daxil olmaqla random tam ədəd yarat.
+- Minimum maksimumdan böyükdürsə, düzgün idarə et.
+- 10 təsadüfi ədəd yarat və array şəklində qaytar.
+- Array daxilində təkrar ədədlərin olub-olmadığını yoxla.
+
+**Example:**
+```javascript
+generateRandomNumbers(10, 50);
+
+// [23, 45, 12, 38, 10, 29, 17, 50, 31, 23]
+```
+
+### TASK 02 — Advanced Rounding Calculator
+
+**Goal:** Ədədləri müxtəlif üsullarla yuvarlaqlaşdıran funksiya yaz.
+
+**Requirements:**
+- Ən yaxın tam ədədə yuvarlaqlaşdır.
+- Aşağı tam ədədə yuvarlaqlaşdır.
+- Yuxarı tam ədədə yuvarlaqlaşdır.
+- Vergüldən sonra verilmiş sayda rəqəm saxla.
+- Ədədin müsbət, mənfi və ya sıfır olduğunu müəyyən et.
+
+**Example:**
+```javascript
+roundNumber(15.6789, 2);
+
+// {
+//   round: 16,
+//   floor: 15,
+//   ceil: 16,
+//   fixed: 15.68,
+//   sign: "positive"
+// }
+```
+
+### TASK 03 — Geometry Calculator
+
+**Goal:** Dairə, düzbucaqlı və üçbucağın sahə və perimetrini hesabla.
+
+**Requirements:**
+
+**Circle**
+- Radius qəbul et.
+- Sahəni hesabla.
+- Çevrə uzunluğunu hesabla.
+
+**Rectangle**
+- En və uzunluq qəbul et.
+- Sahəni hesabla.
+- Perimetri hesabla.
+- Diaqonalı hesabla.
+
+**Triangle**
+- Üç tərəf qəbul et.
+- Perimetri hesabla.
+- Heron düsturu ilə sahəni hesabla.
+- Üçbucağın mövcud olub-olmadığını yoxla.
+
+**Example:**
+```javascript
+calculateGeometry("circle", 5);
+
+calculateGeometry("rectangle", 10, 5);
+
+calculateGeometry("triangle", 3, 4, 5);
+```
+
+### TASK 04 — Distance Calculator
+
+**Goal:** İki koordinat nöqtəsi arasındakı məsafəni hesabla.
+
+**Requirements:**
+- X1, Y1, X2, Y2 koordinatlarını qəbul et.
+- Evklid məsafəsini hesabla.
+- Nəticəni 2 rəqəmə qədər yuvarlaqlaşdır.
+- Hər iki nöqtənin başlanğıc nöqtəsindən məsafəsini də hesabla.
+
+**Formula:**
+
+`distance = Math.sqrt((x2 - x1)² + (y2 - y1)²)`
+
+**Example:**
+```javascript
+calculateDistance(2, 3, 8, 11);
+
+// distance: 10
+// roundedDistance: 10
+```
+
+### TASK 05 — Advanced Random Dice Simulator
+
+**Goal:** İki zərdən ibarət random simulyasiya sistemi yarat.
+
+**Requirements:**
+- 2 ədəd zər at.
+- Hər zərin nəticəsi 1–6 arasında olsun.
+- 1000 dəfə simulyasiya et.
+- Hər mümkün cəmin neçə dəfə gəldiyini hesabla.
+- Ən çox gələn nəticəni tap.
+- İki zərin cəminin 7 olduğu halları hesabla.
+- Nəticələrin faizini hesabla.
+
+**Example:**
+```javascript
+simulateDice(1000);
+
+// {
+//   totalRolls: 1000,
+//   sum7Count: 165,
+//   sum7Percentage: 16.5,
+//   mostFrequentSum: 8
+// }
+```
+
+### Math Toolkit
+
+İstifadə edə biləcəyin əsas metodlar:
+
+| Method | Description |
+|:---|:---|
+| `Math.random()` | Random number |
+| `Math.floor()` | Round down |
+| `Math.ceil()` | Round up |
+| `Math.round()` | Nearest integer |
+| `Math.sqrt()` | Square root |
+| `Math.pow()` | Power |
+| `Math.PI` | Pi constant |
+| `Math.abs()` | Absolute value |
+| `Math.max()` | Maximum |
+| `Math.min()` | Minimum |
+| `Math.trunc()` | Remove decimal part |
+| `Math.sign()` | Number sign |
+| `Math.hypot()` | Euclidean distance |
 
 ---
 
-## 🟢 ASAN — 17 SUAL
+# 📦 PART 02 — ARRAY CHALLENGES
 
-**1.** Verilmiş `n` ədədinin 3-ə və 7-yə bölünüb-bölünmədiyini tapın.
+<sub>7 TASKS · VERY HARD LEVEL · ALGORITHMIC THINKING</sub>
 
-**2.** Verilmiş `n` və `m` (`n < m`) ədədləri arasındakı tək ədədlərin sayını tapın.
+Bu bölmənin əsas məqsədi hazır JavaScript metodlarından asılı olmadan öz alqoritmlərini qurmaqdır.
 
-**3.** Verilmiş `n` və `m` (`n < m`) ədədləri arasındakı tək ədədlərin cəmini tapın.
+### TASK 06 — Custom Sorting Algorithm
 
-**4.** Verilmiş `n` tam ədədinin sadə və ya mürəkkəb olduğunu tapın.
+**Goal:** Array elementlərini artan sıra ilə düz.
 
-**5.** Verilmiş array-in içindəki cüt ədədlərin cəmini tapın.
+**Requirements:**
+- `sort()` istifadə etmək olmaz.
+- Bubble Sort və ya Selection Sort istifadə et.
+- Təkrar elementləri düzgün yerləşdir.
+- Orijinal array üzərində işləməyə çalış.
 
-**6.** İstənilən sayda `number` elementi olan array qəbul edən və array-in içindəki cüt ədədlərin kvadratlarının cəmini hesablayan function yazın.
-
-**7.** İki parametr qəbul edən function yazın:
-- Hər iki parametrin rəqəm olub-olmadığını yoxlayın.
-- Əgər hər ikisi də rəqəmdirsə, həmin iki parametr arasındakı bütün ədədlərin cəmini `return` edin.
-- Əks halda uyğun xəbərdarlıq qaytarın.
-
-Məsələn:
-
+**Example:**
 ```javascript
-sumNumbers(10, 15);
+customSort([8, 3, 1, 9, 4, 2]);
+
+// [1, 2, 3, 4, 8, 9]
 ```
 
-Nəticə: `75`
+### TASK 07 — Second Largest & Second Smallest
 
-**8.** Verilmiş `n` ədədinin 0, müsbət və ya mənfi olduğunu tapın.
+**Goal:** Array daxilində ikinci ən böyük və ikinci ən kiçik unikal ədədi tap.
 
-**9.** Verilmiş `n` ədədinin rəqəmlərinin sayını tapın.
+**Requirements:**
+- `sort()` istifadə etmək olmaz.
+- Təkrar elementləri nəzərə al.
+- Kifayət qədər unikal element yoxdursa, uyğun nəticə qaytar.
 
-Məsələn: `12345 → 5`
+**Example:**
+```javascript
+findSecond([10, 5, 20, 20, 2, 1, 1]);
 
-**10.** Verilmiş `n` ədədinin son rəqəmini tapın.
+// secondLargest: 10
+// secondSmallest: 2
+```
 
-**11.** Verilmiş `n` ədədinin ilk rəqəmini tapın.
+### TASK 08 — Frequency Counter
 
-Məsələn: `5832 → 5`
+**Goal:** Array daxilində elementlərin təkrarlanma sayını hesabla.
 
-**12.** 1-dən `n`-ə qədər olan ədədlər içərisində 5-ə bölünənləri ekrana çıxarın.
+**Requirements:**
+- Hər elementin sayını tap.
+- Ən çox təkrarlanan elementi müəyyən et.
+- Ən az təkrarlanan elementi müəyyən et.
+- Bərabərlik olduqda bütün uyğun elementləri göstər.
 
-**13.** Verilmiş array-də neçə element olduğunu tapın.
+**Example:**
+```javascript
+frequencyCounter([1, 2, 2, 3, 3, 3, 4, 4]);
 
-**14.** Verilmiş array-də mənfi elementlərin sayını tapın.
+// {
+//   1: 1,
+//   2: 2,
+//   3: 3,
+//   4: 2
+// }
 
-**15.** Verilmiş array-də ən böyük elementi tapın.
+// mostFrequent: [3]
+// leastFrequent: [1]
+```
 
-**16.** Verilmiş array-də ilk və son elementin yerini dəyişin.
+### TASK 09 — Array Intersection & Union
 
-**17.** Verilmiş array-də 10 elementinin ilk dəfə hansı index-də yerləşdiyini tapın. Element tapılmadıqda `-1` qaytarın.
+**Goal:** İki array arasında müqayisə apar.
+
+**Requirements:**
+- Intersection: hər iki array-də olan unikal elementlər.
+- Union: hər iki array-də olan bütün unikal elementlər.
+- Difference: yalnız birinci array-də olan elementlər.
+- Təkrar elementləri düzgün idarə et.
+
+**Example:**
+```javascript
+analyzeArrays(
+    [1, 2, 2, 3, 4],
+    [3, 4, 4, 5, 6]
+);
+
+// intersection: [3, 4]
+// union: [1, 2, 3, 4, 5, 6]
+// difference: [1, 2]
+```
+
+### TASK 10 — Rotate Array
+
+**Goal:** Array-i verilmiş K qədər sağa və ya sola döndər.
+
+**Requirements:**
+- Mənfi K dəyərlərini dəstəklə.
+- K array uzunluğundan böyük ola bilər.
+- `reverse()` və `shift()` istifadə etmək olmaz.
+- Orijinal array-in dəyişib-dəyişməyəcəyini özün müəyyən et.
+
+**Example:**
+```javascript
+rotateArray([1, 2, 3, 4, 5], 2);
+
+// [4, 5, 1, 2, 3]
+```
+
+### TASK 11 — Find Missing Numbers
+
+**Goal:** 1-dən N-ə qədər olan ədədlərdən çatışmayanları tap.
+
+**Requirements:**
+- Bütün çatışmayan ədədləri tap.
+- Təkrar elementlər ola bilər.
+- Array sıralanmamış ola bilər.
+- `includes()` və `indexOf()` istifadə etmə.
+
+**Example:**
+```javascript
+findMissing([1, 3, 3, 6, 7], 8);
+
+// [2, 4, 5, 8]
+```
+
+### TASK 12 — Maximum Subarray Sum
+
+**Goal:** Ardıcıl elementlərdən ibarət ən böyük cəmi tap.
+
+**Requirements:**
+- Yalnız ardıcıl elementlər nəzərə alınmalıdır.
+- Mənfi ədədlər ola bilər.
+- Boş array üçün düzgün nəticə qaytar.
+- Mümkün qədər effektiv alqoritm yaz.
+- Ən böyük cəmi yaradan alt-array-i də qaytar.
+
+**Example:**
+```javascript
+maxSubarraySum([-2, 1, -3, 4, -1, 2, 1, -5, 4]);
+
+// sum: 6
+// subArray: [4, -1, 2, 1]
+```
+
+### Array Coding Restrictions
+
+<badge color="danger">Challenge Rules</badge>
+
+Aşağıdakı metodlardan istifadə etmədən həll etməyə çalış:
+
+```javascript
+sort()
+filter()
+map()
+reduce()
+Set
+Math.max()
+Math.min()
+includes()
+indexOf()
+```
+
+**Allowed:**
+- `for`
+- `while`
+- `if / else`
+- Əlavə dəyişənlər
+- Nested loops
+- Öz yazdığın köməkçi funksiyalar
+
+**Focus:** Time Complexity, Space Complexity və Algorithm Design.
 
 ---
 
-## 🟡 ORTA — 40 SUAL
+# 📅 PART 03 — DATE CHALLENGES
 
-**18.** Verilmiş `n` ədədinin rəqəmləri cəmini tapın.
+<sub>4 TASKS · MEDIUM–HARD LEVEL · DATE MANIPULATION</sub>
 
-Məsələn: `5832 → 18`
+JavaScript `Date` obyektindən istifadə edərək tarixlərlə bağlı praktiki problemləri həll et.
 
-**19.** Verilmiş `n` ədədinin rəqəmlərinin hasilini tapın.
+### TASK 13 — Age Calculator
 
-Məsələn: `234 → 24`
+**Goal:** Doğum tarixinə əsasən dəqiq yaş hesabla.
 
-**20.** Verilmiş ədədin tərsi ilə eyni olub-olmadığını yoxlayın.
+**Requirements:**
+- Yaşı il, ay və gün olaraq hesabla.
+- Ad günü bu il keçməyibsə, yaşı düzgün hesabla.
+- Gələcək tarixləri qəbul etmə.
+- Ayların fərqli gün sayını nəzərə al.
 
-Məsələn:
-- `1221` → Palindrom
-- `1234` → Palindrom deyil
-
-**21.** Verilmiş array-də ən kiçik və ən böyük elementin index-lərini tapın.
-
-**22.** Verilmiş array-də 0 olan elementləri silib yeni array qaytaran function yazın.
-
-Məsələn:
-
+**Example:**
 ```javascript
-[5, 0, 3, 0, 8, 2]
+calculateAge("2005-08-15");
+
+// {
+//   years: ...,
+//   months: ...,
+//   days: ...
+// }
 ```
 
-Nəticə:
+### TASK 14 — Working Days Calculator
 
+**Goal:** İki tarix arasında iş günlərinin sayını hesabla.
+
+**Requirements:**
+- Şənbə və bazarı sayma.
+- Başlanğıc və son tarix daxil edilməlidir.
+- Tarixlər tərsinə verilərsə, düzgün işləməlidir.
+- Sərhəd tarixlərinin hesablanmasını düzgün idarə et.
+
+**Example:**
 ```javascript
-[5, 3, 8, 2]
+calculateWorkingDays("2026-11-16", "2026-11-30");
 ```
 
-**23.** Verilmiş array-də mənfi ədədləri 0 ilə əvəz edən function yazın.
+### TASK 15 — Countdown Calculator
 
-Məsələn:
+**Goal:** Gələcək tarixə qədər qalan vaxtı hesabla.
 
+**Requirements:**
+- Gün
+- Saat
+- Dəqiqə
+- Saniyə
+- Tarix keçibsə, `"Expired"` qaytar.
+
+**Example:**
 ```javascript
-[5, -2, 7, -9, 3]
+countdown("2027-01-01T00:00:00");
 ```
 
-Nəticə:
+### TASK 16 — Date Validator
 
+**Goal:** Verilmiş tarixin həqiqətən mövcud olub-olmadığını yoxla.
+
+**Requirements:**
+- 31 fevral kimi yanlış tarixləri aşkar et.
+- Leap Year qaydasını düzgün yoxla.
+- Ay 1–12 aralığında olmalıdır.
+- Gün həmin ayın real gün sayından böyük olmamalıdır.
+
+**Example:**
 ```javascript
-[5, 0, 7, 0, 3]
-```
-
-**24.** Verilmiş array-də eyni elementlərin olub-olmadığını yoxlayın.
-
-Məsələn:
-
-```javascript
-[1, 2, 3, 4] // false
-[1, 2, 3, 2] // true
-```
-
-**25.** Verilmiş array-də ikinci ən böyük elementi tapın.
-
-Məsələn:
-
-```javascript
-[10, 40, 20, 80, 50]
-```
-
-Nəticə: `50`
-
-**26.** Verilmiş array-də yalnız unikal elementlərdən yeni array yaradın.
-
-Məsələn:
-
-```javascript
-[1, 2, 2, 3, 4, 4, 5]
-```
-
-Nəticə:
-
-```javascript
-[1, 2, 3, 4, 5]
-```
-
-**27.** Bir function yazın. Funksiya array qəbul etsin və array-dəki elementləri tərs ardıcıllıqla yeni array olaraq `return` etsin.
-
-Məsələn:
-
-```javascript
-reverseArray([10, 20, 30, 40]);
-```
-
-Nəticə:
-
-```javascript
-[40, 30, 20, 10]
-```
-
-**28.** Verilmiş `n` ədədinin mükəmməl ədəd (özündən başqa bölənlərinin cəmi özünə bərabər olan ədəd) olub-olmadığını yoxlayın.
-
-Məsələn: `28` → `true` (`1 + 2 + 4 + 7 + 14 = 28`)
-
-**29.** Verilmiş `n` ədədinin Armstronq ədədi olub-olmadığını yoxlayın (rəqəmlərinin kubları cəmi özünə bərabər olan 3 rəqəmli ədəd).
-
-Məsələn: `153` → `true` (`1³ + 5³ + 3³ = 153`)
-
-**30.** Verilmiş `n` ədədinin faktorialını (`n!`) hesablayan function yazın.
-
-Məsələn: `5` → `120`
-
-**31.** `n` sayda elementdən ibarət Fibonaççi ardıcıllığını array şəklində qaytaran function yazın.
-
-Məsələn: `6` → `[0, 1, 1, 2, 3, 5]`
-
-**32.** Verilmiş iki tam ədədin ƏBOB-unu (Ən Böyük Ortaq Bölən) tapın.
-
-Məsələn: `12` və `18` → `6`
-
-**33.** Verilmiş iki tam ədədin ƏKOB-unu (Ən Kiçik Ortaq Bölünən) tapın.
-
-Məsələn: `12` və `18` → `36`
-
-**34.** Verilmiş `n` ədədinin ikilik (binary) say sistemindəki qarşılığını string olaraq qaytaran function yazın (hazır `.toString(2)` istifadə etmədən).
-
-Məsələn: `10` → `"1010"`
-
-**35.** Verilmiş `n` ədədinin rəqəmləri içərisində ən böyük rəqəmi tapın.
-
-Məsələn: `49271` → `9`
-
-**36.** Verilmiş `n` ədədinin rəqəmlərini tərsinə çevirib yeni ədəd kimi qaytaran function yazın (string metodları istifadə etmədən).
-
-Məsələn: `1234` → `4321`
-
-**37.** Verilmiş `n` və `m` (`n < m`) aralığındakı bütün sadə ədədləri array şəklində qaytarın.
-
-Məsələn: `10, 20` → `[11, 13, 17, 19]`
-
-**38.** Verilmiş array-dəki bütün elementləri `k` addım sağa sürüşdürən (rotate) function yazın.
-
-Məsələn: `[1, 2, 3, 4, 5], k = 2` → `[4, 5, 1, 2, 3]`
-
-**39.** Verilmiş array-dəki bütün `0`-ları elementlərin sırasını pozmadan array-in sonuna yığın.
-
-Məsələn: `[0, 1, 0, 3, 12]` → `[1, 3, 12, 0, 0]`
-
-**40.** `1`-dən `N`-ə qədər ədədlərdən ibarət olan, lakin bir ədədi əskik olan array-də çatışmayan ədədi tapın.
-
-Məsələn: `[1, 2, 4, 5, 6]` → `3`
-
-**41.** Verilmiş array-in artan sıra ilə düzülüb-düzülmədiyini (`true` və ya `false`) yoxlayan function yazın.
-
-Məsələn: `[1, 3, 5, 8]` → `true`, `[1, 5, 3, 8]` → `false`
-
-**42.** İki sıralanmış (sorted) array-i tək bir sıralanmış array halında birləşdirin (`.sort()` istifadə etmədən).
-
-Məsələn: `[1, 3, 5]` və `[2, 4, 6]` → `[1, 2, 3, 4, 5, 6]`
-
-**43.** Verilmiş array-i tək və cüt ədədlərdən ibarət iki ayrı array-ə bölüb object şəklində qaytarın.
-
-Məsələn: `[1, 2, 3, 4, 5, 6]` → `{ even: [2, 4, 6], odd: [1, 3, 5] }`
-
-**44.** Verilmiş array-də yalnız bir dəfə rast gəlinən (təkrarlanmayan) elementlərdən ibarət yeni array yaradın.
-
-Məsələn: `[4, 5, 1, 2, 1, 4, 3]` → `[5, 2, 3]`
-
-**45.** Verilmiş array-dəki elementlərin ədədi ortasını tapın və ortalamadan böyük olan elementləri yeni array-də qaytarın.
-
-Məsələn: `[10, 20, 30, 40, 50]` → `[40, 50]`
-
-**46.** İki array-in bir-birinə tam bərabər olub-olmadığını (eyni uzunluqda və eyni indeksdə eyni elementlər) yoxlayan function yazın.
-
-Məsələn: `[1, 2, 3]` və `[1, 2, 3]` → `true`
-
-**47.** Verilmiş array-dəki bütün mənfi ədədləri əvvələ, müsbət ədədləri isə sona yığan function yazın.
-
-Məsələn: `[3, -2, 5, -7, 1, -4]` → `[-2, -7, -4, 3, 5, 1]`
-
-**48.** Verilmiş string-dəki sait hərflərin (`a, e, i, o, u, ə, ö, ü, ı`) sayını hesablayan function yazın.
-
-Məsələn: `"JavaScript"` → `3`
-
-**49.** Verilmiş cümlədəki sözlərin sayını tapın (artıq boşluqları nəzərə almadan).
-
-Məsələn: `"  Salam   dünya  necəsən  "` → `3`
-
-**50.** Verilmiş string-də hər bir simvolun neçə dəfə işləndiyini object şəklində qaytarın.
-
-Məsələn: `"alma"` → `{ a: 2, l: 1, m: 1 }`
-
-**51.** Verilmiş cümlədəki ən uzun sözü tapan function yazın.
-
-Məsələn: `"JavaScript öyrənmək çox maraqlıdır"` → `"JavaScript"`
-
-**52.** Verilmiş iki string-in bir-birinin anaqramı olub-olmadığını yoxlayın (eyni hərflərdən fərqli ardıcıllıqla düzülüb-düzülməməsi).
-
-Məsələn: `"listen"` və `"silent"` → `true`
-
-**53.** Verilmiş cümlədəki hər bir sözün ilk hərfini böyük hərfə çevirən function yazın.
-
-Məsələn: `"salam dünya"` → `"Salam Dünya"`
-
-**54.** String-lərdən ibarət array-də verilmiş `search` sözünün neçə dəfə keçdiyini tapın (böyük-kiçik hərf fərqinə baxmadan).
-
-Məsələn: `["Alma", "armud", "ALMA", "banan"], "alma"` → `2`
-
-**55.** `users` array-indən yaşı `18`-dən böyük olan istifadəçilərin yalnız adlarından (`name`) ibarət yeni array yaradın.
-
-```javascript
-let users = [
-    { name: "Kamran", age: 17 },
-    { name: "Aysel", age: 22 },
-    { name: "Rəşad", age: 19 }
-];
-// Nəticə: ["Aysel", "Rəşad"]
-```
-
-**56.** Verilmiş `products` array-indəki bütün məhsulların qiymətinə 18% ƏDV əlavə edərək yeni array qaytaran function yazın (orijinal array dəyişməməlidir).
-
-**57.** Verilmiş `employees` array-indəki işçiləri şöbələrinə (`department`) görə qruplaşdıran function yazın.
-
-```javascript
-let employees = [
-    { name: "Elvin", department: "IT" },
-    { name: "Günay", department: "HR" },
-    { name: "Tural", department: "IT" }
-];
-// Nəticə: { IT: ["Elvin", "Tural"], HR: ["Günay"] }
+validateDate("2024-02-29"); // true
+validateDate("2025-02-29"); // false
+validateDate("2025-13-10"); // false
 ```
 
 ---
 
-## 🔴 ÇƏTİN — 10 SUAL
+# 🌐 PART 04 — DOM CHALLENGES
 
-**58.** Verilmiş array-də ən çox təkrarlanan elementi tapın.
+<sub>4 TASKS · BEGINNER LEVEL · INTERACTIVE WEB DEVELOPMENT</sub>
 
+Bu bölmədə HTML, CSS və JavaScript istifadə edərək interaktiv mini layihələr hazırlayacaqsan.
+
+### TASK 17 — Input Text Counter
+
+**Goal:** İstifadəçinin yazdığı simvolların sayını real vaxtda göstər.
+
+**HTML Elements:**
+- `input`
+- `p` — Character Count
+- `p` — Entered Text
+
+**Requirements:**
+- Input-a yazılan mətn real vaxtda göstərilsin.
+- Simvolların sayı hesablansın.
+- Input boş olduqda `"No text entered"` göstərilsin.
+- Maksimum 50 simvol qəbul edilsin.
+
+**DOM Methods:**
 ```javascript
-[3, 5, 3, 2, 5, 3, 7, 5, 3]
+getElementById()
+addEventListener()
+input
+value
+textContent
 ```
 
-Nəticə: `3`
+### TASK 18 — Simple Calculator
 
-**59.** Verilmiş array-i iki hissəyə bölün.
+**Goal:** İki ədəd üzərində sadə riyazi əməliyyatlar apar.
 
-Məsələn:
+**HTML Elements:**
+- Birinci `input`
+- İkinci `input`
+- 4 button (+, -, *, /)
+- Bir `h2` — Result
 
+**Requirements:**
+- İki input-dan ədədləri götür.
+- Düyməyə klik etdikdə uyğun əməliyyatı yerinə yetir.
+- Nəticəni ekranda göstər.
+- Input-lar boş olduqda xəbərdarlıq göstər.
+- Sıfıra bölməni yoxla.
+
+**DOM Methods:**
 ```javascript
-[10, 20, 30, 40, 50, 60]
+value
+Number()
+addEventListener()
+textContent
 ```
 
-Nəticə:
+### TASK 19 — Background Color Changer
 
+**Goal:** İstifadəçinin seçdiyi rəngə əsasən səhifənin fonunu dəyiş.
+
+**HTML Elements:**
+- `input` — color
+- `button` — Change Color
+- `button` — Reset
+- `p` — Selected Color
+
+**Requirements:**
+- Color input-dan rəng seç.
+- Change Color düyməsinə klik etdikdə fon dəyişsin.
+- Seçilmiş rəngin HEX kodunu göstər.
+- Reset düyməsinə klik etdikdə əvvəlki rəngə qayıt.
+
+**DOM Methods:**
 ```javascript
-[10, 20, 30]
-[40, 50, 60]
+querySelector()
+value
+style.backgroundColor
+addEventListener()
 ```
 
-**60.** Verilmiş iki array-də ortaq elementləri tapın.
+### TASK 20 — Password Validator
 
+**Goal:** Password-un təhlükəsizlik tələblərinə uyğunluğunu yoxlayan sistem hazırla.
+
+**HTML Elements:**
+- `input` — password
+- `button` — Check Password
+- `button` — Show / Hide Password
+- `p` — Result
+
+**Requirements:**
+- Minimum 8 simvol olmalıdır.
+- Ən azı bir böyük hərf olmalıdır.
+- Ən azı bir kiçik hərf olmalıdır.
+- Ən azı bir rəqəm olmalıdır.
+- Bütün şərtlər ödənildikdə `"Strong Password"` göstər.
+- Çatışmayan tələbləri ayrıca göstər.
+- Show / Hide düyməsinə klik etdikdə password görünən və gizli vəziyyətə keçsin.
+
+**DOM Methods:**
 ```javascript
-let a = [1, 2, 3, 4, 5];
-let b = [3, 5, 7, 9];
+value
+length
+test()
+addEventListener()
+textContent
+input.type
 ```
 
-Nəticə:
 
-```javascript
-[3, 5]
-```
-
-**61.** Verilmiş array-də elementlərin neçə dəfə təkrarlandığını göstərin.
-
-```javascript
-[2, 3, 2, 5, 3, 2]
-```
-
-Nəticə:
-
-```text
-2 → 3 dəfə
-3 → 2 dəfə
-5 → 1 dəfə
-```
-
-**62.** Verilmiş array-də ardıcıl gələn eyni elementləri tapın.
-
-```javascript
-[1, 2, 2, 3, 4, 4, 4, 5]
-```
-
-Nəticə:
-
-```text
-2
-4
-```
-
-**63.** `students` array-i verilib:
-
-```javascript
-let students = [
-    { name: "Ali", age: 20, grade: 75 },
-    { name: "Murad", age: 19, grade: 45 },
-    { name: "Leyla", age: 21, grade: 90 },
-    { name: "Nigar", age: 20, grade: 60 }
-];
-```
-
-Ən yüksək `grade` olan student object-i tapın.
-
-**64.** `products` array-i verilib:
-
-```javascript
-let products = [
-    { name: "Mouse", price: 40 },
-    { name: "Keyboard", price: 80 },
-    { name: "Monitor", price: 300 },
-    { name: "Headset", price: 120 }
-];
-```
-
-Qiyməti 100-dən aşağı olan məhsullardan yeni array yaradın.
-
-Nəticə:
-
-```javascript
-[
-    { name: "Mouse", price: 40 },
-    { name: "Keyboard", price: 80 }
-]
-```
-
-**65.** Verilmiş array-də ən uzun ardıcıl artan hissənin uzunluğunu tapın.
-
-Məsələn:
-
-```javascript
-[1, 2, 3, 2, 3, 4, 5, 1]
-```
-
-Ən uzun artan hissə: `2, 3, 4, 5`
-
-Nəticə: `4`
-
-**66.** Bir function yazın. Function array qəbul etsin və array-dəki elementlərin yerini dəyişmədən, hər elementin neçə dəfə olduğunu object şəklində `return` etsin.
-
-Məsələn:
-
-```javascript
-countElements([10, 20, 10, 30, 20, 10]);
-```
-
-Nəticə:
-
-```javascript
-{
-    10: 3,
-    20: 2,
-    30: 1
-}
-```
-
-**67. MINI CHALLENGE — SHOPPING CART**
-
-Aşağıdakı `cart` array-i verilib:
-
-```javascript
-let cart = [
-    { name: "Mouse", price: 50, quantity: 2 },
-    { name: "Keyboard", price: 100, quantity: 1 },
-    { name: "Headset", price: 150, quantity: 2 },
-    { name: "Mousepad", price: 30, quantity: 3 }
-];
-```
-
-Bir və ya bir neçə function istifadə edərək aşağıdakı əməliyyatları yerinə yetirin:
-
-1. Bütün məhsulların ümumi sayını tapın.
-2. Məhsulların ümumi qiymətini hesablayın (`price × quantity`).
-3. Ən bahalı məhsulu tapın.
-4. `quantity >= 2` olan məhsullardan yeni array yaradın.
-5. Qiyməti 100-dən böyük olan məhsulların ad
